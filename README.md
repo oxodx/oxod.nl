@@ -1,19 +1,48 @@
 # oxod.nl
 
-## Building
+Personal website built with static site generation.
+
+## Quick Start
 
 ```sh
-$ nix-shell
-$ build
+# Enter development environment
+nix develop
+
+# Build the site
+task build
+
+# Build with minification
+task build -- --minify
+
+# Serve locally
+task serve
 ```
 
-## Publishing
+## Project Structure
 
-Files will be in `public/` after building.
+- `articles/` - Blog posts (Markdown)
+- `templates/` - HTML templates (gomplate)
+- `tools/` - Build scripts (bash)
+- `static/` - CSS, JS, assets
+- `public/` - Built output
+
+## Pages
+
+- `/` - About
+- `/blog` - Blog listing
+- `/contact` - Contact info
+- `/donate` - Crypto donations
+- `/<slug>` - Blog posts
+
+## Tech Stack
+
+- Nix flakes for development environment
+- Go template (gomplate) for HTML
+- Markdown (cmark) for articles
+- Swup for page transitions
+- Highlight.js for code syntax highlighting
 
 ## License
 
-The generator code is licensed under the GNU General Public License version 3.0.
-
-The blog content is licensed under the Creative Commons
-Attribution-NonCommercial-ShareAlike 4.0 International License.
+Content: CC BY-NC-SA 4.0
+Code: GPL-3.0
