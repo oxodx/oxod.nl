@@ -132,8 +132,10 @@ generateArticle() {
 generatePage() {
 	local template="$1"
 	local output="$2"
+	shift 2
+	local extra=("$@")
 
-	gomplate "${gomplateFlags[@]}" \
+	gomplate "${gomplateFlags[@]}" "${extra[@]}" \
 		-f "$template" \
 		-o "$output"
 }
@@ -209,6 +211,9 @@ main() {
 			generateIndex "${articleJSONs[@]}"
 		fi
 
+		generatePage "$ROOT/templates/about.html" "$PUBLIC_DIR/index.html"
+		generatePage "$ROOT/templates/blog.html" "$PUBLIC_DIR/blog/index.html" \
+			-d "articles=file://$(realpath "$PUBLIC_DIR/articles.json")"
 		generatePage "$ROOT/templates/about.html" "$PUBLIC_DIR/about/index.html"
 		generatePage "$ROOT/templates/contact.html" "$PUBLIC_DIR/contact/index.html"
 		generatePage "$ROOT/templates/donate.html" "$PUBLIC_DIR/donate/index.html"

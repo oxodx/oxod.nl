@@ -1,33 +1,21 @@
 <!DOCTYPE html>
 {{ template "components/head.html" }}
-{{ $articles := datasource "articles" }}
 
-<meta property="og:title" content="Homepage" />
-<meta property="og:site_name" content="oxod's blog" />
-<meta property="og:type" content="article" />
-<meta property="article:author" content="oxod" />
-<title>oxod's blog</title>
+<meta property="og:title" content="oxod" />
+<meta property="og:site_name" content="oxod" />
+<meta property="og:type" content="website" />
+<title>oxod</title>
 
 {{ template "components/header.html" }}
 
-<main id="index">
-	{{ range $articles }}
+<main id="home">
 	<article>
-		<aside>
-			<datetime>{{ (time.Unix .writtenAt).Format "2006/01/02" }}</datetime>
-		</aside>
 		<div class="article-body">
-			{{ .synopsis.html }}
+			<p>Hi, I'm oxod. I'm a developer who likes building things.</p>
+			<p>I work on various projects, mostly involving computers and code.</p>
+			<p>This site is where I write about what I'm working on.</p>
 		</div>
-		{{ if .synopsis.hasMore }}
-		<a href="/{{ .slug }}" class="view-more">
-			read more
-		</a>
-		{{ else }}
-		<hr>
-		{{ end }}
 	</article>
-	{{ end }}
 </main>
 
 {{ template "components/footer.html" }}
