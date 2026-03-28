@@ -109,7 +109,7 @@ generateArticle() {
 				text: $bodyText,
 				html: $bodyHTML
 			}
-		}' > "$PUBLIC_DIR/$slug.json"
+		}' > "$PUBLIC_DIR/$slug/index.json"
 
 	gomplate "${gomplateFlags[@]}" \
 		-f "$ARTICLE_TEMPLATE" \
