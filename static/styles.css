@@ -99,16 +99,28 @@ header h1 small {
 
 nav {
 	display: flex;
-	gap: 1.5rem;
-	margin-top: 1rem;
-	padding-top: 1rem;
-	border-top: 1px solid var(--ov);
+	gap: 0;
+	margin: 1rem 0 0;
+	padding: 0;
+	border: none;
 }
 
 nav a {
 	color: var(--fg);
 	text-decoration: none;
-	font-size: 0.9rem;
+	font-size: 0.85rem;
+	padding: 0.5rem 1rem;
+	border: 1px solid var(--ov);
+	border-right: none;
+}
+
+nav a:first-child {
+	border-radius: 4px 0 0 4px;
+}
+
+nav a:last-child {
+	border-right: 1px solid var(--ov);
+	border-radius: 0 4px 4px 0;
 }
 
 nav a:hover {
