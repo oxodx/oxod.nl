@@ -14,7 +14,7 @@ jobs:
       with:
         nix_path: nixpkgs=channel:nixos-unstable
     - run: nix-shell
-    - run: build
+    - run: bash ./tools/build
     - uses: actions/upload-pages-artifact@v4
       with:
         path: public
