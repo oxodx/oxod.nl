@@ -33,6 +33,7 @@
                 jq
                 go-task
                 minify
+                parallel
                 python3
                 (pkgs.writeShellScriptBin "parallel-moreutils" ''${pkgs.moreutils}/bin/parallel "$@"'')
               ];
