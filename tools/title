@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [ $# -lt 1 ]; then
+    echo "Usage: $0 <file>" >&2
+    exit 1
+fi
+
+if [ ! -f "$1" ]; then
+    echo "Error: File not found: $1" >&2
+    exit 1
+fi
+
+trimPunct() {
+	declare -n v="$1"
+	for punct in "${@:2}"; do
+		if [[ "${v%%"${punct}"*}" != "${v}" ]]; then
+			v="${v%%"${punct}"*}${punct}"
+		fi
+	done
+}
+
+text=$(cmark --nobreaks "$1" | htmlq -t 'body > *:first-child')
+trimPunct text "." "!" "?"
+echo "$text"

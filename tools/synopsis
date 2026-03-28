@@ -1,0 +1,3 @@
+#!/bin/sh
+set -o pipefail
+cmark -t commonmark "$1" | sed -n '1,/^$/p' | head -n -1
