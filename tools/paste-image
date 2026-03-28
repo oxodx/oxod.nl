@@ -1,14 +1,15 @@
-#!/bin/sh
-MIME_TYPES_PATH=${MIME_TYPES_PATH:-/etc/mime.types}
+#!/usr/bin/env bash
+set -euo pipefail
 
-name="./static/assets/clipboard-$(date +%s)"
+MIME_TYPES_PATH="${MIME_TYPES_PATH:-/etc/mime.types}"
+
+local name="./static/assets/clipboard-$(date +%s)"
 wl-paste > "$name"
 
+local mime ext
 mime=$(wl-paste -l | head -n1)
-ext=$(grep -G "^${mime}"$'\t' "$MIME_TYPES_PATH")
-ext=${ext##*$'\t'}
-ext=${ext%% *}
-if [[ "$ext" != "" ]]; then
+ext=$(grep -F "$mime"$'\t' "$MIME_TYPES_PATH" | cut -f2 | cut -d' ' -f1)
+if [[ -n "$ext" ]]; then
 	mv "$name" "$name.$ext"
 	name+=".$ext"
 fi

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-set -eo pipefail
-shopt -s extglob
+set -euo pipefail
+shopt -s extglob globstar nullglob
 
 SOURCE_ROOT=$(realpath "$(dirname "${BASH_SOURCE[0]}")/..")
 cd "${SOURCE_ROOT}"
@@ -20,7 +20,7 @@ GOMPLATE_FLAGS=${GOMPLATE_FLAGS:-}
 CMARK_FLAGS=${CMARK_FLAGS:-}
 
 validateEnvironment() {
-	local missing=()
+	local -a missing=()
 	
 	for cmd in gomplate cmark jq parallel stat; do
 		if ! command -v "$cmd" &> /dev/null; then
@@ -28,7 +28,7 @@ validateEnvironment() {
 		fi
 	done
 	
-	if [ ${#missing[@]} -ne 0 ]; then
+	if (( ${#missing[@]} != 0 )); then
 		echo "Error: Missing required commands: ${missing[*]}" >&2
 		echo "Run: nix-shell" >&2
 		return 1
@@ -49,7 +49,7 @@ generateArticle() {
 	usage $# generateArticle input
 
 	local input="$1"
-	local isDir
+	local isDir=0
 
 	if [[ -d "$input" ]]; then
 		input="$input/index.md"
@@ -92,8 +92,7 @@ generateArticle() {
 
 	mkdir -p "$PUBLIC_DIR/$slug"
 
-	if [[ "$isDir" ]]; then
-		# Ensure assets are moved.
+	if (( isDir )); then
 		cp -r "$(dirname "$filepath")/." "$PUBLIC_DIR/$slug/"
 		rm -f "$PUBLIC_DIR/$slug/index.md"
 	fi
@@ -155,10 +154,9 @@ transform() {
 }
 
 main() {
-	for arg in "$@"; do
-		case "$arg" in
+	while (( "$#" )); do
+		case "$1" in
 		-m|--minify)
-			shift
 			export MINIFY=1;;
 		-h|--help)
 			log "Usage: $(basename "$0") [-m|--minify]"
@@ -169,16 +167,19 @@ main() {
 		*)
 			break;;
 		esac
+		shift
 	done
 
-	case "$1" in
+	case "${1:-}" in
 	article)
-		for f in "${@:2}"; do
+		shift
+		for f in "$@"; do
 			generateArticle "$f"
 		done
 		;;
 	transform)
-		for f in "${@:2}"; do
+		shift
+		for f in "$@"; do
 			transform "$f"
 		done
 		;;
@@ -187,25 +188,21 @@ main() {
 		;;
 	"")
 		mkdir -p "$PUBLIC_DIR"
-		if [[ -d "$PUBLIC_DIR" ]]; then
-			rm -rf "$PUBLIC_DIR/"*
-		fi
+		rm -rf "$PUBLIC_DIR"/*
 
 		articles=( "$ARTICLES_DIR"/* )
-		if [[ -f "$articles" ]]; then
+		if (( ${#articles[@]} )); then
 			parallel-moreutils "$0" article -- "${articles[@]}"
 		fi
 
-		articleJSONs=( "$PUBLIC_DIR"/!(~*)/index.json )
-		if [[ -f "$articleJSONs" ]]; then
+		articleJSONs=( "$PUBLIC_DIR"/*/index.json )
+		if (( ${#articleJSONs[@]} )); then
 			generateIndex "${articleJSONs[@]}"
 		fi
 
 		cp -r "$STATIC_DIR" "$PUBLIC_DIR/static"
 
-		# transform $(find "$PUBLIC_DIR" -type f)
-		parallel-moreutils "$0" transform -- $(find "$PUBLIC_DIR" -type f)
-		# parallel-moreutils -j10 "${BASH_SOURCE[0]}" transform -- "$(find "$PUBLIC_DIR" -type f)"
+		parallel-moreutils "$0" transform -- "$PUBLIC_DIR"/**/*
 		;;
 	*)
 		log "Unknown item to generate: $1 (wants article|index|transform)"

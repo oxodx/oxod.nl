@@ -1,24 +1,22 @@
 #!/usr/bin/env bash
-main() {
-	init "$1"
-	echo "$writtenAt" "$updatedAt" "$slug"
-}
+set -euo pipefail
 
-init() {
-	filepath="$1"
-	filename="${filepath##*/}"
+main() {
+	local filepath="$1"
+	local filename="${filepath##*/}"
 	if [[ "$filename" == index.md ]]; then
-		filename=$(dirname "$filepath")
+		filename="${filepath%/*}"
 		filename="${filename##*/}"
 	fi
-	slug="${filename%.*}"
+	local slug="${filename%.*}"
 
+	local headrev tailrev writtenAt updatedAt
 	headrev=$(commit "$filepath")
 	tailrev=$(commit "$filepath" --reverse)
-	if [[ "$tailrev" != "" ]]; then
+	if [[ -n "$tailrev" ]]; then
 		writtenAt=$(commit_date "$tailrev")
 	fi
-	if [[ "$headrev" != "" ]]; then
+	if [[ -n "$headrev" ]]; then
 		updatedAt=$(commit_date "$headrev")
 	fi
 
@@ -27,13 +25,15 @@ init() {
 		slug="${slug#*+}"
 	fi
 
-	if [[ "$updatedAt" == "" ]] || ! git diff --exit-code --quiet "$filepath"; then
+	if [[ -z "$updatedAt" ]] || ! git diff --exit-code --quiet "$filepath"; then
 		read -r updatedAt < <(stat -c '%Y' "$filepath")
 	fi
 
-	if [[ "$writtenAt" == "" ]]; then
+	if [[ -z "$writtenAt" ]]; then
 		writtenAt="$updatedAt"
 	fi
+
+	echo "$writtenAt" "$updatedAt" "$slug"
 }
 
 commit() {
