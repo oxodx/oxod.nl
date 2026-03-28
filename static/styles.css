@@ -127,8 +127,8 @@ nav {
 nav a {
 	color: var(--fg);
 	text-decoration: none;
-	font-size: 0.85rem;
-	padding: 0.5rem 1rem;
+	font-size: 1rem;
+	padding: 0.75rem 1.5rem;
 	border: 1px solid var(--ov);
 	border-right: none;
 }
@@ -219,10 +219,9 @@ footer {
 }
 
 #license {
-	font-size: 0.75em;
-	line-height: 1.5em;
-	text-align: right;
-	max-width: 280px;
+	font-size: 0.8rem;
+	line-height: 1.4;
+	text: right;
 }
 
 @media (max-width: 600px) {
