@@ -6,6 +6,7 @@ pkgs.mkShell {
     moreutils
     htmlq
     bats
+    minify
     (pkgs.writeShellScriptBin "serve" ''${pkgs.python3}/bin/python3 -m http.server'')
   ];
 
