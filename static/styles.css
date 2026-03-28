@@ -38,6 +38,8 @@ body {
 	flex-direction: column;
 	box-sizing: border-box;
 	max-width: 44em;
+	padding-top: 0;
+	padding-bottom: 0;
 }
 
 main {
@@ -166,7 +168,7 @@ footer {
 	}
 }
 
-footer > * {
+footer p {
 	margin: 2em 0;
 	font-size: 0.9em;
 }
@@ -187,6 +189,10 @@ footer::before {
 	margin: 2em 0;
 	border-style: solid;
 	border-color: var(--accent);
+}
+
+#index article > a.view-more:visited {
+	color: var(--pink-text);
 }
 
 #index article > a.view-more {
