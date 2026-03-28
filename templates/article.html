@@ -14,15 +14,15 @@
 <main id="article">
 	<article>
 		<aside>
-			<datetime>{{ (time.Unix $article.writtenAt).Format "2006/01/02" }}</datetime>
+			<time datetime="{{ (time.Unix $article.writtenAt).Format "2006-01-02" }}">{{ (time.Unix $article.writtenAt).Format "2006/01/02" }}</time>
 			{{ if not (eq $article.writtenAt $article.updatedAt) }}
-			(updated at <datetime>{{ (time.Unix $article.updatedAt).Format "2006/01/02" }}</datetime>)
+			(updated at <time datetime="{{ (time.Unix $article.updatedAt).Format "2006-01-02" }}">{{ (time.Unix $article.updatedAt).Format "2006/01/02" }}</time>)
 			{{ end }}
 		</aside>
 		<div class="article-body">
 			{{ $article.body.html }}
 		</div>
-	<article>
+	</article>
 </main>
 
 {{ template "components/footer.html" }}

@@ -9,8 +9,7 @@
 	--ov: rgba(157, 124, 216, 0.25);
 	--hr: rgba(157, 124, 216, 0.60);
 
-	--transition: 75ms linear
-	--page-transition: 200ms ease-in-out;
+	--transition: 75ms linear;
 }
 
 @media (prefers-color-scheme: light) {
@@ -86,14 +85,6 @@ pre {
 header {
 	padding: 2rem 0;
 	border-bottom: 1px solid var(--ov);
-	width: 75vw;
-	margin: 0 auto;
-}
-
-@media (max-width: 600px) {
-	header {
-		width: 100vw;
-	}
 }
 
 header h1 {

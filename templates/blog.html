@@ -13,7 +13,7 @@
 	{{ range $articles }}
 	<article>
 		<aside>
-			<datetime>{{ (time.Unix .writtenAt).Format "2006/01/02" }}</datetime>
+			<time datetime="{{ (time.Unix .writtenAt).Format "2006-01-02" }}">{{ (time.Unix .writtenAt).Format "2006/01/02" }}</time>
 		</aside>
 		<a href="/{{ .slug }}" class="title">
 			{{ .title }}

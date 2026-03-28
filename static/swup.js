@@ -5,20 +5,20 @@ import hljs from 'https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/+esm'
 
 const swup = new Swup({
 	containers: [ "main" ],
-	animationSelector: 'main',
 	plugins: [
 		new Swupscroll(),
 		new Swuppreload(),
 	],
 })
 
-// Re-highlight code blocks after page load.
+// Highlight code blocks on initial load and after navigation.
+hljs.highlightAll()
 swup.on("contentReplaced", () => hljs.highlightAll())
 
 // Preload all our articles.
-const index = document.getElementById('index')
-if (index) {
-	const links = index.querySelectorAll('article > a')
+const blog = document.getElementById('blog')
+if (blog) {
+	const links = blog.querySelectorAll('article > a.title')
 	for (const link of links) {
 		swup.preloadPage(link.href)
 	}
