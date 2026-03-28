@@ -27,26 +27,34 @@
 	}
 }
 
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
 html, body {
 	min-height: 100vh;
 	color: var(--fg);
 	background-color: var(--bg);
+	margin: 0;
 }
 
 body {
 	font-family: "Source Serif Pro", "Noto Serif", serif;
-	line-height: 1.5em;
+	line-height: 1.6;
 	display: flex;
 	flex-direction: column;
-	box-sizing: border-box;
-	max-width: 44em;
-	padding-top: 0;
-	padding-bottom: 0;
+	max-width: 42rem;
+	margin: 0 auto;
+	padding: 0 1rem;
 }
 
 main {
+	flex: 1;
+	width: 100%;
+	max-width: 38rem;
+	margin: 0 auto;
+	padding: 2rem 0;
 	transition: opacity 100ms linear;
-	opacity: 1;
 }
 
 html.is-animating main {
@@ -59,46 +67,22 @@ html.is-animating main {
 	}
 }
 
-main {
-	max-width: 38em;
-	width: 100%;
-}
-
 pre {
-	line-height: 1.25em;
-}
-
-body > main {
-	flex: 1;
-}
-
-main {
-	margin: 0 auto;
-}
-
-article {
-	margin: 2em auto;
+	line-height: 1.4;
+	background: var(--b2);
+	padding: 1rem;
+	overflow-x: auto;
+	border-radius: 4px;
 }
 
 header {
-	position: relative;
-}
-
-header::after {
-	content: "";
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	margin: 0 auto;
-	max-width: 38em;
-	width: 100%;
+	padding: 2em 0;
 	border-bottom: 1px solid var(--ov);
 }
 
 header h1 {
 	color: var(--accent);
-	margin: 1em 0;
+	margin: 0;
 }
 
 header h1 a,
@@ -109,26 +93,24 @@ header h1 a:visited {
 
 header h1 small {
 	color: var(--f2);
-	font-size: 0.65em;
-	font-weight: lighter;
-}
-
-code {
-	background: none;
-	padding: 0;
+	font-size: 0.6em;
+	font-weight: 400;
 }
 
 code, kbd, pre, samp {
 	font-family: "Inconsolata", "Source Code Pro", "Noto Mono", monospace;
-	font-weight: 500;
-	font-size: 0.95em;
-	tab-size: 2;
+	font-size: 0.9em;
 }
 
-pre {
+code {
 	background: var(--b2);
-	padding: 1em;
-	overflow-x: auto;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+}
+
+pre code {
+	background: none;
+	padding: 0;
 }
 
 p img,
@@ -155,6 +137,7 @@ a:hover {
 
 aside {
 	color: var(--f2);
+	font-size: 0.85em;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -172,7 +155,9 @@ footer {
 	gap: 1em;
 	grid-template-columns: 1fr auto;
 	align-items: first baseline;
-	position: relative;
+	padding: 2em 0;
+	border-top: 1px solid var(--ov);
+	margin-top: auto;
 }
 
 #license {
@@ -193,50 +178,46 @@ footer {
 }
 
 footer p {
-	margin: 2em 0;
-	font-size: 0.9em;
+	margin: 0;
+	font-size: 0.85em;
 }
 
-footer::before {
-	content: "";
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	margin: 0 auto;
-	max-width: 38em;
-	width: 100%;
+#index article {
+	padding: 1.5em 0;
+	border-bottom: 1px solid var(--ov);
+}
+
+#index article:first-child {
 	border-top: 1px solid var(--ov);
 }
 
 #index article > hr {
-	margin: 2em 0;
-	border-style: solid;
-	border-color: var(--accent);
+	display: none;
 }
 
 #index article > a.view-more:visited {
-	color: var(--pink-text);
+	color: var(--accent);
 }
 
 #index article > a.view-more {
-	margin: 1rem 0;
-	margin-top: 0;
-	padding: 1rem 0;
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-
-	transition: all var(--transition);
+	display: inline-block;
+	margin-top: 0.5em;
+	padding: 0.5em 0;
 	color: var(--accent);
-	border-bottom: 2px solid var(--accent);
+	text-decoration: none;
 }
 
 #index article > a.view-more:hover {
 	color: var(--accent-hover);
-	border-color: var(--accent-hover);
-	text-decoration: none;
+	text-decoration: underline;
+}
+
+#index .article-body hr {
+	display: none;
+}
+
+#index .article-body > * + * {
+	margin-top: 0.75rem;
 }
 
 #index .article-body h1,
@@ -245,33 +226,10 @@ footer::before {
 #index .article-body h4,
 #index .article-body h5,
 #index .article-body h6 {
-	font-size: 1.25em;
+	margin-top: 1.5rem;
+	margin-bottom: 0.5rem;
 }
 
-#index .article-body > * {
-	margin: 0;
-	margin-bottom: 1rem;
-}
-
-#index .article-body > *:last-child {
-	margin-bottom: 0;
-}
-
-#index .article-body hr {
-	display: none;
-}
-
-#article h1,
-#article h2,
-#article h3,
-#article h4,
-#article h5,
-#article h6,
-#article p {
-	margin: 2.5rem 0;
-}
-
-#index .article-body > *:first-child,
-#article .article-body > *:first-child {
-	margin-top: 1rem;
+#article .article-body > * + * {
+	margin-top: 1.25rem;
 }
