@@ -2,13 +2,20 @@
 set -euo pipefail
 
 main() {
+	if ! command -v wl-paste &> /dev/null; then
+		echo "Error: Missing required command: wl-paste" >&2
+		return 1
+	fi
+
 	local MIME_TYPES_PATH="${MIME_TYPES_PATH:-/etc/mime.types}"
 	local name="./static/assets/clipboard-$(date +%s)"
+
+	mkdir -p ./static/assets
 	wl-paste > "$name"
 
 	local mime ext
 	mime=$(wl-paste -l | head -n1)
-	ext=$(grep -F "$mime"$'\t' "$MIME_TYPES_PATH" | cut -f2 | cut -d' ' -f1)
+	ext=$(grep -F "$mime"$'\t' "$MIME_TYPES_PATH" | cut -f2 | cut -d' ' -f1 || true)
 	if [[ -n "$ext" ]]; then
 		mv "$name" "$name.$ext"
 		name+=".$ext"

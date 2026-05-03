@@ -19,10 +19,26 @@ ARTICLE_TEMPLATE=${ARTICLE_TEMPLATE:-$ROOT/templates/article.html}
 GOMPLATE_FLAGS=${GOMPLATE_FLAGS:-}
 CMARK_FLAGS=${CMARK_FLAGS:-}
 
+read -r -a gomplateExtraFlags <<< "$GOMPLATE_FLAGS"
+read -r -a cmarkFlags <<< "$CMARK_FLAGS"
+
 validateEnvironment() {
 	local -a missing=()
+	local -a required=(
+		cmark
+		git
+		gomplate
+		htmlq
+		jq
+		parallel-moreutils
+		stat
+	)
+
+	if [[ "${MINIFY:-}" != "" ]]; then
+		required+=(minify)
+	fi
 	
-	for cmd in gomplate cmark jq parallel-moreutils stat; do
+	for cmd in "${required[@]}"; do
 		if ! command -v "$cmd" &> /dev/null; then
 			missing+=("$cmd")
 		fi
@@ -30,15 +46,13 @@ validateEnvironment() {
 	
 	if (( ${#missing[@]} != 0 )); then
 		echo "Error: Missing required commands: ${missing[*]}" >&2
-		echo "Run: nix-shell" >&2
+		echo "Run: nix develop" >&2
 		return 1
 	fi
 }
 
-validateEnvironment
-
 gomplateFlags=(
-	${GOMPLATE_FLAGS}
+	"${gomplateExtraFlags[@]}"
 	--template "components=$COMPONENTS_DIR"
 	--plugin "md=cmark"
 	--plugin "title=$TOOLS_DIR/title"
@@ -71,7 +85,7 @@ generateArticle() {
 	local body
 	case "$extension" in
 	md)
-		body=$(cmark ${CMARK_FLAGS} --nobreaks --unsafe --smart "$filepath")
+		body=$(cmark "${cmarkFlags[@]}" --nobreaks --unsafe --smart "$filepath")
 		;;
 	htm|html)
 		body=$(< "$filepath")
@@ -135,6 +149,7 @@ generatePage() {
 	shift 2
 	local extra=("$@")
 
+	mkdir -p "$(dirname "$output")"
 	gomplate "${gomplateFlags[@]}" "${extra[@]}" \
 		-f "$template" \
 		-o "$output"
@@ -159,7 +174,7 @@ generateIndex() {
 }
 
 transform() {
-	for f in "${TRANSFORMS_DIR[@]}"/*; do
+	for f in "$TRANSFORMS_DIR"/*; do
 		"$f" "$1"
 	done
 }
@@ -180,6 +195,8 @@ main() {
 		esac
 		shift
 	done
+
+	validateEnvironment
 
 	case "${1:-}" in
 	article)
@@ -209,6 +226,8 @@ main() {
 		articleJSONs=( "$PUBLIC_DIR"/*/index.json )
 		if (( ${#articleJSONs[@]} )); then
 			generateIndex "${articleJSONs[@]}"
+		else
+			echo "[]" > "$PUBLIC_DIR/articles.json"
 		fi
 
 		generatePage "$ROOT/templates/about.html" "$PUBLIC_DIR/index.html"

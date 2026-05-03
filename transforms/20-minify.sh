@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-if [[ "$MINIFY" != "" ]]; then
+set -euo pipefail
+
+if [[ "${MINIFY:-}" != "" ]]; then
 	case "${1##*.}" in
 	html|css|js)
 		minify -o "$1.tmp" "$1"

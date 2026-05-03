@@ -2,6 +2,8 @@
 set -euo pipefail
 
 main() {
+	usage "$@"
+
 	local filepath="$1"
 	local filename="${filepath##*/}"
 	if [[ "$filename" == index.md ]]; then
@@ -25,7 +27,7 @@ main() {
 		slug="${slug#*+}"
 	fi
 
-	if [[ -z "$updatedAt" ]] || ! git diff --exit-code --quiet "$filepath"; then
+	if [[ -z "$updatedAt" ]] || ! git diff --exit-code --quiet -- "$filepath"; then
 		read -r updatedAt < <(stat -c '%Y' "$filepath")
 	fi
 
@@ -37,11 +39,23 @@ main() {
 }
 
 commit() {
-	git log --oneline "${@:2}" "$1" | head -n1 | cut -f1 -d' ' 2> /dev/null
+	git log --format=%H -n 1 "${@:2}" -- "$1" 2> /dev/null
 }
 
 commit_date() {
 	git show -s --format="%cd" --date="format:%s" "$1"
+}
+
+usage() {
+	if (( $# != 1 )); then
+		echo "Usage: $0 <file>" >&2
+		return 1
+	fi
+
+	if [[ ! -f "$1" && ! -d "$1" ]]; then
+		echo "Error: Path not found: $1" >&2
+		return 1
+	fi
 }
 
 main "$@"

@@ -2,6 +2,16 @@
 set -euo pipefail
 
 main() {
+	if (( $# != 1 )); then
+		echo "Usage: $0 <file>" >&2
+		return 1
+	fi
+
+	if [[ ! -f "$1" ]]; then
+		echo "Error: File not found: $1" >&2
+		return 1
+	fi
+
 	local threshold=400
 	local synopsis=
 	local index=0
@@ -11,7 +21,7 @@ main() {
 	while true; do
 		((++index))
 		local newElement
-		newElement=$(htmlq "body > *:nth-child(${index})" <<< "${html}")
+		newElement=$(htmlq "body > *:nth-child(${index})" <<< "${html}" || true)
 		if [[ -z "$newElement" ]]; then
 			break
 		fi

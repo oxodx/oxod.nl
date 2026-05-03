@@ -35,6 +35,8 @@
                 minify
                 parallel
                 python3
+                shellcheck
+                wl-clipboard
                 (pkgs.writeShellScriptBin "parallel-moreutils" ''${pkgs.moreutils}/bin/parallel "$@"'')
               ];
 
