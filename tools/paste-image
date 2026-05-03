@@ -8,7 +8,8 @@ main() {
 	fi
 
 	local MIME_TYPES_PATH="${MIME_TYPES_PATH:-/etc/mime.types}"
-	local name="./static/assets/clipboard-$(date +%s)"
+	local name
+	name="./static/assets/clipboard-$(date +%s)"
 
 	mkdir -p ./static/assets
 	wl-paste > "$name"

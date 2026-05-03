@@ -96,8 +96,10 @@ generateArticle() {
 		;;
 	esac
 
-	local title=$("$TOOLS_DIR/title" "$filepath")
-	local synopsis=$("$TOOLS_DIR/synopsis" "$filepath")
+	local title
+	local synopsis
+	title=$("$TOOLS_DIR/title" "$filepath")
+	synopsis=$("$TOOLS_DIR/synopsis" "$filepath")
 
 	local hasMore=false
 	if (( ${#synopsis} < ${#body} )); then
@@ -216,7 +218,7 @@ main() {
 		;;
 	"")
 		mkdir -p "$PUBLIC_DIR"
-		rm -rf "$PUBLIC_DIR"/*
+		rm -rf "${PUBLIC_DIR:?}"/*
 
 		articles=( "$ARTICLES_DIR"/* )
 		if (( ${#articles[@]} )); then
