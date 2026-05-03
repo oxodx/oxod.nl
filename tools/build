@@ -9,12 +9,15 @@ ROOT=${ROOT:-$SOURCE_ROOT}
 TOOLS_DIR=${TOOLS_DIR:-$ROOT/tools}
 PUBLIC_DIR=${PUBLIC_DIR:-$ROOT/public}
 STATIC_DIR=${STATIC_DIR:-$ROOT/static}
+DATA_DIR=${DATA_DIR:-$ROOT/data}
+PAGES_DIR=${PAGES_DIR:-$ROOT/pages}
 ARTICLES_DIR=${ARTICLES_DIR:-$ROOT/articles}
 COMPONENTS_DIR=${COMPONENTS_DIR:-$ROOT/templates/components}
 TRANSFORMS_DIR=${TRANSFORMS_DIR:-$ROOT/transforms}
 
-INDEX_TEMPLATE=${INDEX_TEMPLATE:-$ROOT/templates/index.html}
 ARTICLE_TEMPLATE=${ARTICLE_TEMPLATE:-$ROOT/templates/article.html}
+PAGE_TEMPLATE=${PAGE_TEMPLATE:-$ROOT/templates/page.html}
+SITE_DATA=${SITE_DATA:-$DATA_DIR/site.json}
 
 GOMPLATE_FLAGS=${GOMPLATE_FLAGS:-}
 CMARK_FLAGS=${CMARK_FLAGS:-}
@@ -49,11 +52,17 @@ validateEnvironment() {
 		echo "Run: nix develop" >&2
 		return 1
 	fi
+
+	if [[ ! -f "$SITE_DATA" ]]; then
+		echo "Error: Missing site config: $SITE_DATA" >&2
+		return 1
+	fi
 }
 
 gomplateFlags=(
 	"${gomplateExtraFlags[@]}"
 	--template "components=$COMPONENTS_DIR"
+	-d "site=file://$SITE_DATA"
 	--plugin "md=cmark"
 	--plugin "title=$TOOLS_DIR/title"
 	--plugin "synopsis=$TOOLS_DIR/synopsis"
@@ -157,10 +166,66 @@ generatePage() {
 		-o "$output"
 }
 
-generateIndex() {
+generateConfiguredPage() {
+	usage 4 generateConfiguredPage "<page-key>" "<output>" "<id>" "<slug>"
+
+	local pageKey="$1"
+	local output="$2"
+	local id="$3"
+	local slug="$4"
+	local source
+	local title
+	source=$(jq -r --arg pageKey "$pageKey" '.pages[$pageKey].source // empty' "$SITE_DATA")
+	title=$(jq -r --arg pageKey "$pageKey" '.pages[$pageKey].title // empty' "$SITE_DATA")
+
+	if [[ -z "$source" ]]; then
+		log "generateConfiguredPage: missing source for page: $pageKey"
+		return 1
+	fi
+
+	if [[ -z "$title" ]]; then
+		log "generateConfiguredPage: missing title for page: $pageKey"
+		return 1
+	fi
+
+	local input="$PAGES_DIR/$source"
+
+	if [[ ! -f "$input" ]]; then
+		log "generateConfiguredPage: $input not found"
+		return 1
+	fi
+
+	local body
+	body=$(cmark "${cmarkFlags[@]}" --nobreaks --unsafe --smart "$input")
+
+	mkdir -p "$(dirname "$output")"
+
+	local pageJson
+	pageJson="$output.json"
+	jq --null-input \
+		--arg id "$id" \
+		--arg slug "$slug" \
+		--arg title "$title" \
+		--arg bodyHTML "$body" \
+		'{
+			$id,
+			$slug,
+			$title,
+			body: {
+				html: $bodyHTML
+			}
+		}' > "$pageJson"
+
+	gomplate "${gomplateFlags[@]}" \
+		-f "$PAGE_TEMPLATE" \
+		-o "$output" \
+		-d "page=file://$(realpath "$pageJson")"
+}
+
+generateArticleIndex() {
 	for f in "$@"; do
 		if [[ "$f" != *".json" ]]; then
-			log "generateIndex: expected json file for $f"
+			log "generateArticleIndex: expected json file for $f"
 			return 1
 		fi
 	done
@@ -168,11 +233,6 @@ generateIndex() {
 	cat "$@" \
 		| jq -s 'map(del(.body)) | sort_by(.writtenAt) | reverse' \
 		> "$PUBLIC_DIR/articles.json"
-
-	gomplate "${gomplateFlags[@]}" \
-		-f "$INDEX_TEMPLATE" \
-		-o "$PUBLIC_DIR/index.html" \
-		-d "articles=file://$(realpath "$PUBLIC_DIR/articles.json")"
 }
 
 transform() {
@@ -214,7 +274,7 @@ main() {
 		done
 		;;
 	index)
-		generateIndex "$@"
+		generateArticleIndex "$@"
 		;;
 	"")
 		mkdir -p "$PUBLIC_DIR"
@@ -227,17 +287,17 @@ main() {
 
 		articleJSONs=( "$PUBLIC_DIR"/*/index.json )
 		if (( ${#articleJSONs[@]} )); then
-			generateIndex "${articleJSONs[@]}"
+			generateArticleIndex "${articleJSONs[@]}"
 		else
 			echo "[]" > "$PUBLIC_DIR/articles.json"
 		fi
 
-		generatePage "$ROOT/templates/about.html" "$PUBLIC_DIR/index.html"
+		generateConfiguredPage "about" "$PUBLIC_DIR/index.html" "home" ""
 		generatePage "$ROOT/templates/blog.html" "$PUBLIC_DIR/blog/index.html" \
 			-d "articles=file://$(realpath "$PUBLIC_DIR/articles.json")"
-		generatePage "$ROOT/templates/about.html" "$PUBLIC_DIR/about/index.html"
-		generatePage "$ROOT/templates/contact.html" "$PUBLIC_DIR/contact/index.html"
-		generatePage "$ROOT/templates/donate.html" "$PUBLIC_DIR/donate/index.html"
+		generateConfiguredPage "about" "$PUBLIC_DIR/about/index.html" "about" "about"
+		generateConfiguredPage "contact" "$PUBLIC_DIR/contact/index.html" "contact" "contact"
+		generateConfiguredPage "donate" "$PUBLIC_DIR/donate/index.html" "donate" "donate"
 
 		cp -r "$STATIC_DIR" "$PUBLIC_DIR/static"
 

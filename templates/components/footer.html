@@ -1,8 +1,9 @@
+{{ $site := datasource "site" }}
 <footer>
 	<p id="license">
-		Except where otherwise noted, content on this site is licensed under a
-		<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license noopener noreferrer" target="_blank" referrerpolicy="strict-origin-when-cross-origin">
-			CC BY-NC-SA 4.0
+		{{ $site.license.prefix }}
+		<a href="{{ $site.license.href }}" rel="license noopener noreferrer" target="_blank" referrerpolicy="strict-origin-when-cross-origin">
+			{{ $site.license.label }}
 		</a>
 	</p>
 </footer>

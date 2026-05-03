@@ -3,13 +3,14 @@
 <head>
 {{ template "components/head.html" }}
 {{ $article := datasource "article" }}
+{{ $site := datasource "site" }}
 
 <meta property="og:title" content="{{ $article.title }}" />
-<meta property="og:site_name" content="oxod's blog" />
+<meta property="og:site_name" content="{{ $site.name }}'s blog" />
 <meta property="og:type" content="article" />
 <meta property="og:description" content="{{ $article.synopsis.text }}" />
-<meta property="article:author" content="oxod" />
-<title>{{ $article.title }} &mdash; oxod's blog</title>
+<meta property="article:author" content="{{ $site.author }}" />
+<title>{{ $article.title }} &mdash; {{ $site.name }}'s blog</title>
 </head>
 <body>
 {{ template "components/header.html" }}

@@ -21,7 +21,9 @@ task serve
 ## Project Structure
 
 - `articles/` - Blog posts (Markdown)
+- `pages/` - Static page bodies (Markdown)
 - `templates/` - HTML templates (gomplate)
+- `data/site.json` - Site navigation, titles, metadata, and footer config
 - `tools/` - Build scripts (bash)
 - `static/` - CSS, JS, assets
 - `public/` - Built output

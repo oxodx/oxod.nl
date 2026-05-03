@@ -1,0 +1,22 @@
+{
+  "name": "oxod",
+  "description": "oxod's personal website and blog about small tools, self-hosting, NixOS, and software experiments.",
+  "author": "oxod",
+  "nav": [
+    { "label": "About", "href": "/about" },
+    { "label": "Blog", "href": "/blog" },
+    { "label": "Contact", "href": "/contact" },
+    { "label": "Donate", "href": "/donate" }
+  ],
+  "pages": {
+    "about": { "title": "About", "source": "about.md" },
+    "blog": { "title": "Blog" },
+    "contact": { "title": "Contact", "source": "contact.md" },
+    "donate": { "title": "Donate", "source": "donate.md" }
+  },
+  "license": {
+    "prefix": "Except where otherwise noted, content on this site is licensed under a",
+    "label": "CC BY-NC-SA 4.0",
+    "href": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  }
+}
