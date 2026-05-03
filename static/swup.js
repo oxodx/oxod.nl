@@ -11,6 +11,22 @@ const swup = new Swup({
 	],
 })
 
+const updateNavigation = () => {
+	const currentPath = window.location.pathname.replace(/\/$/, "") || "/"
+
+	document.querySelectorAll("nav a").forEach((link) => {
+		const linkPath = new URL(link.href).pathname.replace(/\/$/, "") || "/"
+		const isCurrent = linkPath === currentPath
+
+		link.toggleAttribute("aria-current", isCurrent)
+	})
+}
+
 // Highlight code blocks on initial load and after navigation.
 hljs.highlightAll()
-swup.on("page:view", () => hljs.highlightAll())
+updateNavigation()
+
+swup.on("page:view", () => {
+	hljs.highlightAll()
+	updateNavigation()
+})

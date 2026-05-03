@@ -7,22 +7,27 @@
 <meta property="og:title" content="Blog - oxod" />
 <meta property="og:site_name" content="oxod" />
 <meta property="og:type" content="website" />
-<title>Blog — oxod</title>
+<title>Blog &mdash; oxod</title>
 </head>
 <body>
 {{ template "components/header.html" }}
 
-<main id="blog">
-	{{ range $articles }}
-	<article>
-		<aside>
-			<time datetime="{{ (time.Unix .writtenAt).Format "2006-01-02" }}">{{ (time.Unix .writtenAt).Format "2006/01/02" }}</time>
-		</aside>
-		<a href="/{{ .slug }}" class="title">
-			{{ .title }}
-		</a>
-	</article>
-	{{ end }}
+<main id="content" class="listing-page">
+	<header class="page-heading">
+		<h1>Blog</h1>
+	</header>
+	<div id="blog" class="post-list">
+		{{ range $articles }}
+		<article>
+			<aside>
+				<time datetime="{{ (time.Unix .writtenAt).Format "2006-01-02" }}">{{ (time.Unix .writtenAt).Format "2006/01/02" }}</time>
+			</aside>
+			<a href="/{{ .slug }}" class="title">
+				{{ .title }}
+			</a>
+		</article>
+		{{ end }}
+	</div>
 </main>
 
 {{ template "components/footer.html" }}
