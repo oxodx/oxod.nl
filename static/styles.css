@@ -169,59 +169,21 @@ li li {
 	margin-bottom: 0;
 }
 
-.skip-link {
-	position: absolute;
-	left: 1rem;
-	top: 1rem;
-	transform: translateY(-150%);
-	background: var(--surface);
-	color: var(--fg);
-	border: 1px solid var(--border);
-	border-radius: 6px;
-	padding: 0.5rem 0.75rem;
-	z-index: 10;
-}
-
-.skip-link:focus {
-	transform: translateY(0);
-}
-
 body > header {
 	width: 100%;
-	padding: 1.25rem 0;
+	padding: 1.5rem 0;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
-	gap: 1rem;
+	justify-content: center;
 	border-bottom: 1px solid var(--border);
-}
-
-.site-title {
-	color: var(--fg);
-	font-family: "Lato", "Source Sans Pro", "Noto Sans", "Segoe UI", sans-serif;
-	font-size: 1.1rem;
-	font-weight: 900;
-	text-decoration: none;
-	letter-spacing: 0;
-}
-
-.site-title::before {
-	content: "";
-	display: inline-block;
-	width: 0.72rem;
-	height: 0.72rem;
-	margin-right: 0.45rem;
-	border-radius: 50%;
-	background: linear-gradient(135deg, var(--accent), var(--accent-2));
-	box-shadow: 0 0 0 4px rgba(125, 211, 199, 0.12);
-	vertical-align: 0.02em;
 }
 
 nav {
 	display: flex;
 	align-items: center;
-	justify-content: flex-end;
+	justify-content: center;
 	gap: 0.15rem;
+	width: 100%;
 	margin: 0;
 	padding: 0.18rem;
 	border: 1px solid var(--border);
@@ -250,41 +212,6 @@ nav a[aria-current] {
 	color: var(--fg);
 	background: var(--surface-2);
 	box-shadow: inset 0 -2px 0 var(--accent);
-}
-
-.intro {
-	margin: 0 0 2.5rem;
-	padding: 0 0 2rem;
-	border-bottom: 1px solid var(--border);
-}
-
-.eyebrow {
-	margin: 0 0 0.75rem;
-	color: var(--accent-2);
-	font-family: "Lato", "Source Sans Pro", "Noto Sans", "Segoe UI", sans-serif;
-	font-size: 0.78rem;
-	font-weight: 900;
-	letter-spacing: 0.08em;
-	text-transform: uppercase;
-}
-
-.lede {
-	max-width: 38rem;
-	margin: 0;
-	color: var(--muted);
-	font-size: 1.3rem;
-	line-height: 1.45;
-}
-
-.page-heading {
-	margin: 0 0 2rem;
-	padding-bottom: 1rem;
-	border-bottom: 1px solid var(--border);
-}
-
-.page-heading h1 {
-	margin-bottom: 0;
-	font-size: clamp(2rem, 7vw, 3.2rem);
 }
 
 .article-body > * + * {
@@ -381,11 +308,6 @@ footer p,
 		padding: 2.5rem 0;
 	}
 
-	body > header {
-		align-items: flex-start;
-		flex-direction: column;
-	}
-
 	nav {
 		width: 100%;
 		justify-content: stretch;
@@ -395,10 +317,6 @@ footer p,
 	nav a {
 		flex: 1;
 		text-align: center;
-	}
-
-	.lede {
-		font-size: 1.08rem;
 	}
 
 	#blog article {

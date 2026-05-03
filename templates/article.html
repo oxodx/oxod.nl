@@ -14,8 +14,7 @@
 <body>
 {{ template "components/header.html" }}
 
-<main id="content">
-	<div id="article">
+<main id="article">
 		<article>
 			<aside>
 				<time datetime="{{ (time.Unix $article.writtenAt).Format "2006-01-02" }}">{{ (time.Unix $article.writtenAt).Format "2006/01/02" }}</time>
@@ -27,7 +26,6 @@
 				{{ $article.body.html }}
 			</div>
 		</article>
-	</div>
 </main>
 
 {{ template "components/footer.html" }}

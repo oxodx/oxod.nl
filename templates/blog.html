@@ -12,11 +12,7 @@
 <body>
 {{ template "components/header.html" }}
 
-<main id="content" class="listing-page">
-	<header class="page-heading">
-		<h1>Blog</h1>
-	</header>
-	<div id="blog" class="post-list">
+<main id="blog">
 		{{ range $articles }}
 		<article>
 			<aside>
@@ -27,7 +23,6 @@
 			</a>
 		</article>
 		{{ end }}
-	</div>
 </main>
 
 {{ template "components/footer.html" }}
