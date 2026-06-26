@@ -11,13 +11,13 @@
   --color-card: hsl(var(--card));
 
   --animate-float: float 6s ease-in-out infinite;
-  --animate-pulse-subtitle: pulse-subtle 4s ease-in-out infinte;
+  --animate-pulse-subtitle: pulse-subtle 4s ease-in-out infinite;
   --anime-fade-in: fade-in 0.7s ease-out forwards;
   --anime-fade-in-delay-1: fade-in 0.7s ease-out 0.2s forwards;
   --anime-fade-in-delay-2: fade-in 0.7s ease-out 0.4s forwards;
   --anime-fade-in-delay-3: fade-in 0.7s ease-out 0.6s forwards;
   --anime-fade-in-delay-4: fade-in 0.7s ease-out 0.8s forwards;
-  --anime-meteor: meteor 5s linear infinte;
+  --animate-meteor: meteor 5s linear infinite;
 }
 
 @keyframes float {
@@ -28,7 +28,7 @@
   }
 
   50% {
-    transform: translateY(-10);
+    transform: translateY(-10px);
   }
 }
 
@@ -58,16 +58,12 @@
 
 @keyframes meteor {
   0% {
-    transform: rotate(215deg) translate(0);
-    opacity: 1;
-  }
-
-  70% {
+    transform: rotate(135deg) translateX(0);
     opacity: 1;
   }
 
   100% {
-    transform: rotate(215deg) translate(-500);
+    transform: rotate(135deg) translateX(1000px);
     opacity: 0;
   }
 }
@@ -164,7 +160,7 @@
 }
 
 @utility meteor {
-  @apply absolute bg-linear-to-r from-white via-white to-transparent rounded-full;
+  @apply absolute bg-linear-to-l from-white via-white to-transparent rounded-full;
   box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.3)
 }
 
