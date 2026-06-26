@@ -1,4 +1,0 @@
-* text=auto
-
-tools/* text eol=lf
-transforms/*.sh text eol=lf
