@@ -7,9 +7,15 @@ export const HomeSection = () => {
           <span className="text-primary opacity-0 animate-fade-in-delay-1"> oxod</span>
         </h1>
 
-        <p className="text-lg md:text-xl text-muted-foreground max-2-2xl mx-auto opacity-0 animate-fade-in-delay-4">
+        <p className="text-lg md:text-xl text-muted-foreground max-2-2xl mx-auto opacity-0 animate-fade-in-delay-3">
           I create random stuff
         </p>
+
+        <div className="pt-4 opacity-0 animate-fade-in-delay-4">
+          <a href="#projects" className="oxod-button">
+            View My Work
+          </a>
+        </div>
       </div>
     </div>
   </section>
