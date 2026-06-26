@@ -6,6 +6,10 @@ export const HomeSection = () => {
           <span className="opacity-0 animate-fade-in"> Hi, I'm</span>
           <span className="text-primary opacity-0 animate-fade-in-delay-1"> oxod</span>
         </h1>
+
+        <p>
+          I create random stuff
+        </p>
       </div>
     </div>
   </section>
