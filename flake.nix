@@ -27,22 +27,9 @@
           {
             devShells.default = pkgs.mkShell {
               packages = with pkgs; [
-                cmark
-                gomplate
-                htmlq
-                jq
                 go-task
-                minify
-                parallel
-                python3
-                shellcheck
-                wl-clipboard
-                (pkgs.writeShellScriptBin "parallel-moreutils" ''${pkgs.moreutils}/bin/parallel "$@"'')
+                bun
               ];
-
-              shellHook = ''
-                export MIME_TYPES_PATH="${pkgs.mailcap}/etc/mime.types"
-              '';
             };
           };
       }
