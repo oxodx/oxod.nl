@@ -54,17 +54,18 @@ export const StarBackground = () => {
   }
 
   const generateMeteors = () => {
-    const numberOfMeteors = Math.floor(window.innerWidth * window.innerHeight / 200000)
+    const numberOfMeteors = Math.floor(window.innerWidth * window.innerHeight / 500000)
     const newMeteors = []
 
     for (let i = 0; i < numberOfMeteors; i++) {
+      const duration = Math.random() * 2 + 2
       newMeteors.push({
         id: i,
         size: Math.random() * 2 + 1,
         x: Math.random() * 100,
         y: Math.random() * 30,
-        delay: Math.random() * 10,
-        animationDuration: Math.random() * 2 + 2,
+        delay: -(Math.random() * duration),
+        animationDuration: duration,
       })
     }
 
