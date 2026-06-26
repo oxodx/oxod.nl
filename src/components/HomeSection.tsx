@@ -7,7 +7,7 @@ export const HomeSection = () => {
           <span className="text-primary opacity-0 animate-fade-in-delay-1"> oxod</span>
         </h1>
 
-        <p>
+        <p className="text-lg md:text-xl text-muted-foreground max-2-2xl mx-auto opacity-0 animate-fade-in-delay-4">
           I create random stuff
         </p>
       </div>
