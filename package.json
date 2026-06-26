@@ -1,8 +1,25 @@
 {
 	"name": "oxod.nl",
-	"private": true,
-	"version": "0.0.1",
+	"version": "0.1.0",
+	"description": "My dev portfolio site.",
+	"homepage": "https://oxod.nl",
 	"type": "module",
+	"author": {
+		"name": "oxod",
+		"email": "me@oxod.nl",
+		"url": "https://github.com/oxodx"
+	},
+	"contributors": [
+		{
+			"name": "oxod",
+			"email": "me@oxod.nl",
+			"url": "https://github.com/oxodx"
+		}
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/oxodx/oxod.nl.git"
+	},
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
