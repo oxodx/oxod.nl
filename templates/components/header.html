@@ -1,8 +1,0 @@
-{{ $site := datasource "site" }}
-<header>
-	<nav aria-label="Primary navigation">
-		{{ range $site.nav }}
-		<a href="{{ .href }}">{{ .label }}</a>
-		{{ end }}
-	</nav>
-</header>
