@@ -1,8 +1,0 @@
-# yaml-language-server: $schema=https://taskfile.dev/schema.json
-version: '3'
-
-tasks:
-  build:
-    desc: Build the website
-    cmds:
-      - bun run build
