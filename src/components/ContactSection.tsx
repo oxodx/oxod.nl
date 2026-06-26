@@ -1,4 +1,5 @@
-import { Mail } from "lucide-react"
+import { cn } from "@/lib/utils"
+import { Mail, MapPin, Send } from "lucide-react"
 
 export const ContactSection = () => {
   return <section id="contact" className="py-24 px-4 relative bg-secondary/30">
@@ -12,11 +13,10 @@ export const ContactSection = () => {
         I'm always open to discussing new opportunities.
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         <div className="space-y-8">
           <h3 className="text-2xl font-semibold mb-6">Contact Information</h3>
 
-          <div className="space-y-6 justify-center">
+          <div className="space-y-6 flex flex-col items-center">
             <div className="flex items-start space-x-4">
               <div className="p-3 rounded-full bg-primary/10">
                 <Mail className="h-6 w-6 text-primary" />
@@ -30,7 +30,7 @@ export const ContactSection = () => {
             </div>
             <div className="flex items-start space-x-4">
               <div className="p-3 rounded-full bg-primary/10">
-                <Mail className="h-6 w-6 text-primary" />
+                <MapPin className="h-6 w-6 text-primary" />
               </div>
               <div>
                 <h4 className="font-medium">Location</h4>
@@ -56,7 +56,6 @@ export const ContactSection = () => {
               </a>
             </div>
           </div>
-        </div>
       </div>
     </div>
   </section>
