@@ -1,5 +1,4 @@
-import { cn } from "@/lib/utils"
-import { Mail, MapPin, Send } from "lucide-react"
+import { Mail, MapPin } from "lucide-react"
 
 export const ContactSection = () => {
   return <section id="contact" className="py-24 px-4 relative bg-secondary/30">
