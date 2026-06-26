@@ -17,7 +17,7 @@ jobs:
         nix_path: nixpkgs=channel:nixos-unstable
     - run: task lint
       shell: nix develop -c bash -e {0}
-    - run: task build -- --minify
+    - run: task build
       shell: nix develop -c bash -e {0}
     - uses: actions/upload-pages-artifact@v4
       with:
