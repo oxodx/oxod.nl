@@ -1,6 +1,7 @@
 import { Briefcase, Code, User } from "lucide-react"
 import { buttonVariants } from "./shadcn/ui/button"
 import { cn } from "@/lib/utils"
+import { Card } from "./shadcn/ui/card"
 
 export const AboutSection = () => {
   return <section id="about" className="py-24 px-4 relative">
@@ -34,12 +35,9 @@ export const AboutSection = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 px-4">
-          <div className="gradient-border p-2 card-hover">
-            <div className={cn(
-              "flex items-start gap-4 py-4 px-2 rounded-2xl",
-              "bg-secondary text-secondary-foreground hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)] aria-expanded:bg-secondary aria-expanded:text-secondary-foreground"
-            )}>
+        <div className="grid grid-cols-1 px-4 space-y-4">
+          <Card className="p-2 card-hover  rounded-2xl">
+            <div className="flex items-start gap-4 py-4 px-2">
               <div className="p-3 rounded-full bg-primary/10">
                 <Code className="h-6 w-6 text-primary" />
               </div>
@@ -50,12 +48,9 @@ export const AboutSection = () => {
                 </p>
               </div>
             </div>
-          </div>
-          <div className="gradient-border p-2 card-hover">
-            <div className={cn(
-              "flex items-start gap-4 py-4 px-2 rounded-2xl",
-              "bg-secondary text-secondary-foreground hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)] aria-expanded:bg-secondary aria-expanded:text-secondary-foreground"
-            )}>
+          </Card>
+          <Card className="p-2 card-hover  rounded-2xl">
+            <div className="flex items-start gap-4 py-4 px-2">
               <div className="p-3 rounded-full bg-primary/10">
                 <User className="h-6 w-6 text-primary" />
               </div>
@@ -66,12 +61,9 @@ export const AboutSection = () => {
                 </p>
               </div>
             </div>
-          </div>
-          <div className="gradient-border p-2 card-hover">
-            <div className={cn(
-              "flex items-start gap-4 py-4 px-2 rounded-2xl",
-              "bg-secondary text-secondary-foreground hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)] aria-expanded:bg-secondary aria-expanded:text-secondary-foreground"
-            )}>
+          </Card>
+          <Card className="p-2 card-hover  rounded-2xl">
+            <div className="flex items-start gap-4 py-4 px-2">
               <div className="p-3 rounded-full bg-primary/10">
                 <Briefcase className="h-6 w-6 text-primary" />
               </div>
@@ -82,7 +74,7 @@ export const AboutSection = () => {
                 </p>
               </div>
             </div>
-          </div>
+          </Card>
         </div>
       </div>
     </div>
