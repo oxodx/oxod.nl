@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { useState } from "react"
+import { buttonVariants } from "./shadcn/ui/button";
 
 const skills = [
   // Frontend
@@ -44,18 +45,16 @@ export const SkillsSection = () => {
 
       <div className="flex flex-wrap justify-center gap-4 mb-12">
         {categories.map((category, key) => (
-          <button
+          <a
             key={key}
             onClick={() => setActiveCategory(category)}
             className={cn(
-              "px-5 py-2 rounded-full transition-colors duration-300 capitalize",
-              activeCategory === category 
-                ? "bg-primary text-primary-foreground" 
-                : "bg-secondary/70 text-foreground hover:bd-secondary"
+              buttonVariants({ variant: activeCategory === category ? "default" : "secondary", size: "default" }),
+              "px-5 py-2 rounded-full transition-colors duration-300 capitalize"
             )}
           >
             {category}
-          </button>
+          </a>
         ))}
       </div>
 
