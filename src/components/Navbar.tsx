@@ -1,7 +1,8 @@
 import { cn } from "@/lib/utils"
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react"
-import { buttonVariants } from "./shadcn/ui/button";
+import { buttonVariants } from "@/components/shadcn/ui/button";
+import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/shadcn/ui/navigation-menu";
 
 const navItems = [
   { name: "Home", href: "#home" },
@@ -38,11 +39,15 @@ export const Navbar = () => {
 
       {/* desktop nav */}
       <div className="hidden md:flex space-x-8">
-        {navItems.map((item, key) => (
-          <a key={key} href={item.href} className="text-foreground/80 hover:text-primary transition-colors duration-300">
-            {item.name}
-          </a>
-        ))}
+        <NavigationMenu>
+          <NavigationMenuList>
+            {navItems.map((item, key) => (
+              <NavigationMenuItem>
+                <NavigationMenuLink key={key} className="rounded-full" href={item.href}>{item.name}</NavigationMenuLink>
+              </NavigationMenuItem>
+            ))}
+          </NavigationMenuList>
+        </NavigationMenu>
       </div>
 
       {/* mobile nav */}
@@ -69,8 +74,11 @@ export const Navbar = () => {
             <a
               key={key}
               href={item.href}
-              className="text-foreground/80 hover:text-primary transition-colors duration-300"
               onClick={() => setIsMenuOpen(false)}
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "default" }),
+                "rounded-full px-6 py-2"
+              )}
             >
               {item.name}
             </a>
