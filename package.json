@@ -22,12 +22,14 @@
   "type": "module",
   "scripts": {
     "clean": "rm -rf dist",
-    "dev": "bun run dev:setup && concurrently -k -n css,js,srv \"bun run dev:css\" \"bun run dev:js\" \"bun run dev:serve\"",
-    "dev:setup": "mkdir -p dist && cp -r index.html public/* dist/",
+    "prebuild": "bun run clean && mkdir -p dist && cp -r index.html public/* dist/",
+    "build": "bun run prebuild && bun run build:css && bun run build:js",    
+    "build:css": "bunx @tailwindcss/cli -i src/index.css -o dist/index.css --minify",
+    "build:js": "bun build src/main.tsx --outdir dist --target browser --format esm --minify",
+    "dev": "bun run prebuild && concurrently -k -n css,js,srv \"bun run dev:css\" \"bun run dev:js\" \"bun run dev:serve\"",
     "dev:css": "bunx @tailwindcss/cli -i src/index.css -o dist/index.css --watch",
     "dev:js": "bun build src/main.tsx --outdir dist --target browser --format esm --watch",
     "dev:serve": "serve dist -l 5173 --no-clipboard --single",
-    "build": "rm -rf dist && mkdir -p dist && cp -r index.html public/* dist/ && bunx @tailwindcss/cli -i src/index.css -o dist/index.css && bun build src/main.tsx --outdir dist --target browser --format esm --minify",
     "preview": "serve dist -l 5173 --no-clipboard --single"
   },
   "dependencies": {
