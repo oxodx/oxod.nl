@@ -3,6 +3,8 @@ import { Home } from "./pages/Home"
 import { NotFound } from "./pages/NotFound"
 
 function App() {
+  document.documentElement.classList.add("dark")
+
   return (
     <>
       <BrowserRouter>
