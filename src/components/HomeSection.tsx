@@ -1,4 +1,6 @@
 import { ArrowDown } from "lucide-react"
+import { buttonVariants } from "./shadcn/ui/button"
+import { cn } from "@/lib/utils"
 
 export const HomeSection = () => {
   return <section id="home" className="relative min-h-screen flex flex-col items-center justify-center px-4">
@@ -14,7 +16,13 @@ export const HomeSection = () => {
         </p>
 
         <div className="pt-4 opacity-0 animate-fade-in-delay-4">
-          <a href="#projects" className="oxod-button">
+          <a
+            href="#projects"
+            className={cn(
+              buttonVariants({ variant: "default" }), 
+              "rounded-full px-6 py-2"
+            )}
+          >
             View My Work
           </a>
         </div>
@@ -23,7 +31,7 @@ export const HomeSection = () => {
 
     <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce">
       <span className="text-sm text-muted-foreground mb-2">Scroll</span>
-      <ArrowDown className="h-5 w-5 text-primary"/>
+      <ArrowDown className="h-5 w-5 text-primary" />
     </div>
   </section>
 }
