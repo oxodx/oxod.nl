@@ -21,13 +21,13 @@
   },
   "type": "module",
   "scripts": {
+    "clean": "rm -rf dist",
     "dev": "bun run dev:setup && concurrently -k -n css,js,srv \"bun run dev:css\" \"bun run dev:js\" \"bun run dev:serve\"",
     "dev:setup": "mkdir -p dist && cp -r index.html public/* dist/",
     "dev:css": "bunx @tailwindcss/cli -i src/index.css -o dist/index.css --watch",
     "dev:js": "bun build src/main.tsx --outdir dist --target browser --format esm --watch",
     "dev:serve": "serve dist -l 5173 --no-clipboard --single",
     "build": "rm -rf dist && mkdir -p dist && cp -r index.html public/* dist/ && bunx @tailwindcss/cli -i src/index.css -o dist/index.css && bun build src/main.tsx --outdir dist --target browser --format esm --minify",
-    "lint": "eslint .",
     "preview": "serve dist -l 5173 --no-clipboard --single"
   },
   "dependencies": {
@@ -47,16 +47,10 @@
     "tw-animate-css": "^1.4.0"
   },
   "devDependencies": {
-    "@eslint/js": "^10.0.1",
     "@tailwindcss/cli": "^4.3.1",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "concurrently": "^9.1.2",
-    "eslint": "^10.5.0",
-    "eslint-plugin-react-hooks": "^7.1.1",
-    "globals": "^17.6.0",
-    "serve": "^14.2.4",
-    "typescript": "~6.0.2",
-    "typescript-eslint": "^8.61.0"
+    "serve": "^14.2.4"
   }
 }
