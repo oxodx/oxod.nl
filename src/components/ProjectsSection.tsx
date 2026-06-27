@@ -1,4 +1,6 @@
+import { cn } from "@/lib/utils"
 import { ArrowRight, ExternalLink, GitGraph } from "lucide-react"
+import { buttonVariants } from "./shadcn/ui/button"
 
 const projects = [
   {
@@ -65,10 +67,13 @@ export const ProjectsSection = () => {
       </div>
 
       <div className="text-center mt-12">
-        <a 
-          className="oxod-button w-fit flex items-center mx-auto gap-2" 
-          target="_blank"
+        <a
           href="https://github.com/oxodx"
+          target="_blank"
+          className={cn(
+            buttonVariants({ variant: "default", size: "default" }),
+            "rounded-full px-6 py-2"
+          )}
         >
           Check My Github <ArrowRight size={16} />
         </a>
