@@ -1,7 +1,7 @@
 import { Briefcase, Code, User } from "lucide-react"
 import { buttonVariants } from "./shadcn/ui/button"
 import { cn } from "@/lib/utils"
-import { Card } from "./shadcn/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./shadcn/ui/card"
 
 export const AboutSection = () => {
   return <section id="about" className="py-24 px-4 relative">
@@ -36,44 +36,41 @@ export const AboutSection = () => {
         </div>
 
         <div className="grid grid-cols-1 px-4 space-y-4">
-          <Card className="p-2 card-hover  rounded-2xl">
-            <div className="flex items-start gap-4 py-4 px-2">
-              <div className="p-3 rounded-full bg-primary/10">
+          <Card className="rounded-2xl">
+            <CardContent className="flex items-start gap-4 pt-2">
+              <div className="bg-primary/10 rounded-full p-4 shrink-0">
                 <Code className="h-6 w-6 text-primary" />
               </div>
-              <div className="text-left">
-                <h4 className="font-semibold text-lg">Developer</h4>
-                <p className="text-muted-foreground">
-                  Creating random projects
-                </p>
+
+              <div className="flex flex-col">
+                <CardTitle className="text-left">Developer</CardTitle>
+                <CardDescription className="text-left">Creating random projects</CardDescription>
               </div>
-            </div>
+            </CardContent>
           </Card>
-          <Card className="p-2 card-hover  rounded-2xl">
-            <div className="flex items-start gap-4 py-4 px-2">
-              <div className="p-3 rounded-full bg-primary/10">
+          <Card className="rounded-2xl">
+            <CardContent className="flex items-start gap-4 pt-2">
+              <div className="bg-primary/10 rounded-full p-4 shrink-0">
                 <User className="h-6 w-6 text-primary" />
               </div>
-              <div className="text-left">
-                <h4 className="font-semibold text-lg">UI/UX Design</h4>
-                <p className="text-muted-foreground">
-                  Designing some stuff
-                </p>
+
+              <div className="flex flex-col">
+                <CardTitle className="text-left">UI/UX Design</CardTitle>
+                <CardDescription className="text-left">Designing some stuff</CardDescription>
               </div>
-            </div>
+            </CardContent>
           </Card>
-          <Card className="p-2 card-hover  rounded-2xl">
-            <div className="flex items-start gap-4 py-4 px-2">
-              <div className="p-3 rounded-full bg-primary/10">
+          <Card className="rounded-2xl">
+            <CardContent className="flex items-start gap-4 pt-2">
+              <div className="bg-primary/10 rounded-full p-4 shrink-0">
                 <Briefcase className="h-6 w-6 text-primary" />
               </div>
-              <div className="text-left">
-                <h4 className="font-semibold text-lg">Project Management</h4>
-                <p className="text-muted-foreground">
-                  Creating projects on github
-                </p>
+
+              <div className="flex flex-col">
+                <CardTitle className="text-left">Project Management</CardTitle>
+                <CardDescription className="text-left">Creating projects on github</CardDescription>
               </div>
-            </div>
+            </CardContent>
           </Card>
         </div>
       </div>
