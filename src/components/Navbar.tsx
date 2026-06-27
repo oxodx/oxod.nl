@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils"
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react"
 import { buttonVariants } from "@/components/shadcn/ui/button";
-import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/shadcn/ui/navigation-menu";
+import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from "@/components/shadcn/ui/navigation-menu";
 
 const navItems = [
   { name: "Home", href: "#home" },
