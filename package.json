@@ -23,7 +23,7 @@
   "scripts": {
     "clean": "rm -rf dist",
     "prebuild": "bun run clean && mkdir -p dist && cp -r index.html public/* dist/",
-    "build": "bun run prebuild && bun run build:css && bun run build:js",    
+    "build": "bun run prebuild && bun run build:css && bun run build:js",
     "build:css": "bunx @tailwindcss/cli -i src/index.css -o dist/index.css --minify",
     "build:js": "bun build src/main.tsx --outdir dist --target browser --format esm --minify",
     "dev": "bun run prebuild && concurrently -k -n css,js,srv \"bun run dev:css\" \"bun run dev:js\" \"bun run dev:serve\"",
@@ -52,7 +52,7 @@
     "@tailwindcss/cli": "^4.3.1",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
-    "concurrently": "^9.1.2",
-    "serve": "^14.2.4"
+    "concurrently": "^9.2.3",
+    "serve": "^14.2.6"
   }
 }
