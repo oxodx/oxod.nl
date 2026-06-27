@@ -3,6 +3,7 @@ import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react"
 import { buttonVariants } from "@/components/shadcn/ui/button";
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from "@/components/shadcn/ui/navigation-menu";
+import { USER } from "@/data/user";
 
 const navItems = [
   { name: "Home", href: "#home" },
@@ -32,7 +33,7 @@ export function Navbar() {
     <div className="container flex items-center justify-between">
       <a className="text-xl font-bold text-primary flex items-center" href="#home">
         <span className="relative z-10">
-          <span className="text-glow text-foreground">oxod </span>
+          <span className="text-glow text-foreground">{USER.displayName} </span>
           Portfolio
         </span>
       </a>

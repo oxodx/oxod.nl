@@ -15,7 +15,7 @@ export function AboutSection() {
           <h3 className="text-2xl text-semibold">Random Things Developer</h3>
 
           <p className="text-muted-foreground">
-            I have 6 years of experience in development.
+            I have 5+ years of experience in development.
           </p>
 
           <p className="text-muted-foreground">

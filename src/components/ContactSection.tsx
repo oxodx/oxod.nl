@@ -1,6 +1,7 @@
 import { Mail, MapPin } from "lucide-react"
 import { buttonVariants } from "./shadcn/ui/button"
 import { cn } from "@/lib/utils"
+import { USER } from "@/data/user"
 
 export function ContactSection() {
   return <section id="contact" className="py-24 px-4 relative bg-secondary/30">
@@ -24,8 +25,8 @@ export function ContactSection() {
             </div>
             <div>
               <h4 className="font-medium">Email</h4>
-              <a href="mailto:me@oxod.nl" className="text-muted-foreground hover:text-primary transition-colors">
-                me@oxod.nl
+              <a href={"mailto:" + USER.email} className="text-muted-foreground hover:text-primary transition-colors">
+                {USER.email}
               </a>
             </div>
           </div>
@@ -47,7 +48,7 @@ export function ContactSection() {
           <div className="flex space-x-4 justify-center">
             <a
               target="_blank"
-              href="https://github.com/oxodx"
+              href={USER.github}
               className={cn(
                 buttonVariants({ variant: "ghost", size: "default" }),
                 "rounded-full px-2 py-2"
@@ -59,7 +60,7 @@ export function ContactSection() {
             </a>
             <a
               target="_blank"
-              href="https://x.com/_oxod_"
+              href={USER.twitter}
               className={cn(
                 buttonVariants({ variant: "ghost", size: "default" }),
                 "rounded-full px-2 py-2"

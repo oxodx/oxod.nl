@@ -12,9 +12,11 @@ export const USER: User = {
     "Open source contributor"
   ],
   address: "Netherlands",
-  phoneNumberB64: "",
-  emailB64: "",
+  phoneNumber: "",
+  email: "me@oxod.nl",
   website: "https://oxod.nl",
+  github: "https://github.com/oxodx",
+  twitter: "https://x.com/_oxod_",
   jobTitle: "Student",
   jobs: [
     {

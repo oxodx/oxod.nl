@@ -1,6 +1,7 @@
 import { ArrowDown } from "lucide-react"
 import { buttonVariants } from "./shadcn/ui/button"
 import { cn } from "@/lib/utils"
+import { USER } from "@/data/user"
 
 export function HomeSection() {
   return <section id="home" className="relative min-h-screen flex flex-col items-center justify-center px-4">
@@ -8,7 +9,7 @@ export function HomeSection() {
       <div className="space-y-6">
         <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
           <span className="opacity-0 animate-fade-in"> Hi, I'm</span>
-          <span className="text-primary opacity-0 animate-fade-in-delay-1"> oxod</span>
+          <span className="text-primary opacity-0 animate-fade-in-delay-1"> {USER.displayName}</span>
         </h1>
 
         <p className="text-lg md:text-xl text-muted-foreground max-2-2xl mx-auto opacity-0 animate-fade-in-delay-3">

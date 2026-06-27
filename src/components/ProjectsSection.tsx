@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils"
 import { ArrowRight, ExternalLink, GitGraph } from "lucide-react"
 import { buttonVariants } from "./shadcn/ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "./shadcn/ui/card"
+import { USER } from "@/data/user"
 
 const projects = [
   {
@@ -69,7 +70,7 @@ export function ProjectsSection() {
 
       <div className="text-center mt-12">
         <a
-          href="https://github.com/oxodx"
+          href={USER.github}
           target="_blank"
           className={cn(
             buttonVariants({ variant: "default", size: "default" }),
