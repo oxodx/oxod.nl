@@ -14,6 +14,16 @@ const LEVELS = [
 
 type Day = { date: string; count: number; level: number }
 
+function getMonthLabelX(
+  index: number,
+  total: number,
+  padLeft: number,
+  gridWidth: number
+) {
+  if (total <= 1) return padLeft
+  return padLeft + ((index + 0.5) / total) * gridWidth
+}
+
 function parseDate(d: string) {
   const [y, m, day] = d.split("-").map(Number)
   return new Date(y, m - 1, day)
@@ -188,12 +198,13 @@ export function GitHubContributionsSection() {
               className="w-full"
               aria-label="Loading GitHub Contributions"
             >
-              {skelMonthLabels.map(({ label, col }) => (
+              {skelMonthLabels.map(({ label }, index) => (
                 <text
-                  key={label + col}
-                  x={skelPadLeft + col * (skelCell + skelGap)}
+                  key={label + index}
+                  x={getMonthLabelX(index, skelMonthLabels.length, skelPadLeft, skelGridW)}
                   y={10}
                   className="fill-muted-foreground text-[9px] font-mono"
+                  textAnchor="middle"
                 >
                   {label}
                 </text>
@@ -254,12 +265,13 @@ export function GitHubContributionsSection() {
             aria-label="GitHub Contributions Graph"
           >
             {/* Month labels */}
-            {monthLabels.map(({ label, col }) => (
+            {monthLabels.map(({ label }, index) => (
               <text
-                key={label + col}
-                x={padLeft + col * (cell + gap)}
+                key={label + index}
+                x={getMonthLabelX(index, monthLabels.length, padLeft, gridW)}
                 y={10}
                 className="fill-muted-foreground text-[9px] font-mono"
+                textAnchor="middle"
               >
                 {label}
               </text>
