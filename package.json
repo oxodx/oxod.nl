@@ -21,16 +21,19 @@
   },
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "dev": "bun run dev:setup && concurrently -k -n css,js,srv \"bun run dev:css\" \"bun run dev:js\" \"bun run dev:serve\"",
+    "dev:setup": "mkdir -p dist && cp -r index.html public/* dist/",
+    "dev:css": "bunx @tailwindcss/cli -i src/index.css -o dist/index.css --watch",
+    "dev:js": "bun build src/main.tsx --outdir dist --target browser --format esm --watch",
+    "dev:serve": "serve dist -l 5173 --no-clipboard --single",
+    "build": "rm -rf dist && mkdir -p dist && cp -r index.html public/* dist/ && bunx @tailwindcss/cli -i src/index.css -o dist/index.css && bun build src/main.tsx --outdir dist --target browser --format esm --minify",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "serve dist -l 5173 --no-clipboard --single"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
     "@fontsource-variable/geist": "^5.2.9",
     "@phosphor-icons/react": "^2.1.10",
-    "@tailwindcss/vite": "^4.3.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^1.21.0",
@@ -45,17 +48,15 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@types/node": "^24.13.2",
+    "@tailwindcss/cli": "^4.3.1",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^6.0.2",
-    "esbuild": "^0.28.1",
+    "concurrently": "^9.1.2",
     "eslint": "^10.5.0",
     "eslint-plugin-react-hooks": "^7.1.1",
-    "eslint-plugin-react-refresh": "^0.5.3",
     "globals": "^17.6.0",
+    "serve": "^14.2.4",
     "typescript": "~6.0.2",
-    "typescript-eslint": "^8.61.0",
-    "vite": "^8.1.0"
+    "typescript-eslint": "^8.61.0"
   }
 }
