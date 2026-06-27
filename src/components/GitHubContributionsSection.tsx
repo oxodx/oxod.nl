@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react"
 import { Panel } from "@/components/Panel"
-import { Skeleton } from "@/components/shadcn/ui/skeleton"
 import { USER } from "@/data/user"
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
