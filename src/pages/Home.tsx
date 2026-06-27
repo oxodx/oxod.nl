@@ -1,33 +1,28 @@
-import { StarBackground } from "@/components/StarBackground"
 import { Navbar } from "@/components/Navbar"
-import { HomeSection } from "@/components/HomeSection"
-import { AboutSection } from "@/components/AboutSection"
-import { SkillsSection } from "@/components/SkillsSection"
+import { ProfileHeader } from "@/components/ProfileHeader"
+import { OverviewSection } from "@/components/OverviewSection"
+import { SocialLinksSection } from "@/components/SocialLinksSection"
+import { GitHubContributionsSection } from "@/components/GitHubContributionsSection"
+import { HelloSection } from "@/components/HelloSection"
+import { StackSection } from "@/components/StackSection"
+import { ExperienceSection } from "@/components/ExperienceSection"
 import { ProjectsSection } from "@/components/ProjectsSection"
-import { ContactSection } from "@/components/ContactSection"
 import { Footer } from "@/components/Footer"
 
 export function Home() {
   return (
-    <div className="[--separator-height:--spacing(8)] **:data-[slot=panel]:scroll-mt-[calc(var(--header-height)+var(--separator-height))]">
-      <div className="mx-auto md:max-w-3xl"></div>
-
-      {/* Background Effects */}
-      <StarBackground />
-
-      {/* Navbar */}
+    <div className="max-w-screen overflow-x-clip">
       <Navbar />
-
-      {/* Main Content */}
-      <main>
-        <HomeSection />
-        <AboutSection />
-        <SkillsSection />
+      <main className="mx-auto md:max-w-3xl">
+        <ProfileHeader />
+        <OverviewSection />
+        <SocialLinksSection />
+        <GitHubContributionsSection />
+        <HelloSection />
+        <StackSection />
+        <ExperienceSection />
         <ProjectsSection />
-        <ContactSection />
       </main>
-
-      {/* Footer */}
       <Footer />
     </div>
   )

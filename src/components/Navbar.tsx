@@ -1,91 +1,32 @@
-import { cn } from "@/lib/utils"
-import { Menu, X } from "lucide-react";
-import { useEffect, useState } from "react"
-import { buttonVariants } from "@/components/shadcn/ui/button";
-import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from "@/components/shadcn/ui/navigation-menu";
-import { USER } from "@/data/user";
+import { USER } from "@/data/user"
 
 const navItems = [
-  { name: "Home", href: "#home" },
-  { name: "About", href: "#about" },
-  { name: "Skills", href: "#skills" },
-  { name: "Projects", href: "#projects" },
-  { name: "Contact", href: "#contact" },
+  { name: "Overview", href: "#overview" },
 ]
 
 export function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  useEffect(() => {
-    function handleScroll() {
-      setIsScrolled(window.screenY > 10)
-    }
-
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
-
-  return <nav className={cn(
-    "fixed w-full z-40 transition-all duration-300",
-    isScrolled ? "py-3 bg-background/80 backdrop-blur-md shadow-xs" : "py-5"
-  )}>
-    <div className="container flex items-center justify-between">
-      <a className="text-xl font-bold text-primary flex items-center" href="#home">
-        <span className="relative z-10">
-          <span className="text-glow text-foreground">{USER.displayName} </span>
-          Portfolio
-        </span>
-      </a>
-
-      {/* desktop nav */}
-      <div className="hidden md:flex space-x-8">
-        <NavigationMenu>
-          <NavigationMenuList>
-            {navItems.map((item, key) => (
-              <NavigationMenuItem>
-                <NavigationMenuLink key={key} className="rounded-full" href={item.href}>{item.name}</NavigationMenuLink>
-              </NavigationMenuItem>
-            ))}
-          </NavigationMenuList>
-        </NavigationMenu>
-      </div>
-
-      {/* mobile nav */}
-      <a
-        onClick={() => setIsMenuOpen((prev) => !prev)}
-        className={cn(
-          buttonVariants({ variant: "ghost", size: "icon-lg" }),
-          "md:hidden p-2 z-50"
-        )}
-        aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
-      >
-        {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-      </a>
-
-      <div className={cn(
-        "fixed inset-0 bg-background/95 backdrop-blur-md z-40 flex flex-col items-center justify-center",
-        "transition-all duration-300 md:hidden",
-        isMenuOpen
-          ? "opacity-100 pointer-events-auto"
-          : "opacity-0 pointer-events-none"
-      )}>
-        <div className="flex flex-col space-y-9 text-xl">
-          {navItems.map((item, key) => (
+  return (
+    <header className="sticky top-0 z-50 max-w-screen overflow-x-clip bg-background px-2 pt-2">
+      <div className="screen-line-top screen-line-bottom mx-auto flex h-12 items-center justify-between gap-2 border-x border-line px-2 sm:gap-4 md:max-w-3xl">
+        <a
+          href="#"
+          className="font-heading text-sm font-medium text-foreground"
+        >
+          {USER.displayName}
+        </a>
+        <div className="flex-1" />
+        <nav className="flex items-center gap-4">
+          {navItems.map((item) => (
             <a
-              key={key}
+              key={item.href}
               href={item.href}
-              onClick={() => setIsMenuOpen(false)}
-              className={cn(
-                buttonVariants({ variant: "ghost", size: "default" }),
-                "rounded-full px-6 py-2"
-              )}
+              className="text-sm font-medium tracking-wide text-muted-foreground hover:text-foreground transition-colors"
             >
               {item.name}
             </a>
           ))}
-        </div>
+        </nav>
       </div>
-    </div>
-  </nav>
+    </header>
+  )
 }
