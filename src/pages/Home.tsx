@@ -8,23 +8,27 @@ import { ContactSection } from "@/components/ContactSection"
 import { Footer } from "@/components/Footer"
 
 export function Home() {
-  return <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-    {/* Background Effects */}
-    <StarBackground />
+  return (
+    <div className="[--separator-height:--spacing(8)] **:data-[slot=panel]:scroll-mt-[calc(var(--header-height)+var(--separator-height))]">
+      <div className="mx-auto md:max-w-3xl"></div>
 
-    {/* Navbar */}
-    <Navbar />
+      {/* Background Effects */}
+      <StarBackground />
 
-    {/* Main Content */}
-    <main>
-      <HomeSection />
-      <AboutSection />
-      <SkillsSection />
-      <ProjectsSection />
-      <ContactSection />
-    </main>
-  
-    {/* Footer */}
-    <Footer />
-  </div>
+      {/* Navbar */}
+      <Navbar />
+
+      {/* Main Content */}
+      <main>
+        <HomeSection />
+        <AboutSection />
+        <SkillsSection />
+        <ProjectsSection />
+        <ContactSection />
+      </main>
+
+      {/* Footer */}
+      <Footer />
+    </div>
+  )
 }
