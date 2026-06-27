@@ -12,12 +12,12 @@ const navItems = [
   { name: "Contact", href: "#contact" },
 ]
 
-export const Navbar = () => {
+export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
+    function handleScroll() {
       setIsScrolled(window.screenY > 10)
     }
 

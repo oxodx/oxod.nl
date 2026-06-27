@@ -18,7 +18,7 @@ type Meteor = {
   animationDuration: number
 }
 
-export const StarBackground = () => {
+export function StarBackground() {
   const [stars, setStars] = useState<Star[]>([])
   const [meteors, setMeteors] = useState<Meteor[]>([])
 
@@ -26,7 +26,7 @@ export const StarBackground = () => {
     generateStars()
     generateMeteors()
 
-    const handleResize = () => {
+    function handleResize() {
       generateStars()
     }
 
@@ -35,7 +35,7 @@ export const StarBackground = () => {
     return () => window.removeEventListener("resize", handleResize)
   }, [])
 
-  const generateStars = () => {
+  function generateStars() {
     const numberOfStars = Math.floor(window.innerWidth * window.innerHeight / 10000)
     const newStars = []
 
@@ -53,7 +53,7 @@ export const StarBackground = () => {
     setStars(newStars)
   }
 
-  const generateMeteors = () => {
+  function generateMeteors() {
     const numberOfMeteors = Math.floor(window.innerWidth * window.innerHeight / 500000)
     const newMeteors = []
 

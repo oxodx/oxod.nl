@@ -3,7 +3,7 @@ import { buttonVariants } from "./shadcn/ui/button"
 import { cn } from "@/lib/utils"
 import { Card, CardContent, CardDescription, CardTitle } from "./shadcn/ui/card"
 
-export const AboutSection = () => {
+export function AboutSection() {
   return <section id="about" className="py-24 px-4 relative">
     <div className="container mx-auto max-w-5xl">
       <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">

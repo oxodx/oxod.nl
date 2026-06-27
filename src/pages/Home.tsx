@@ -7,7 +7,7 @@ import { ProjectsSection } from "@/components/ProjectsSection"
 import { ContactSection } from "@/components/ContactSection"
 import { Footer } from "@/components/Footer"
 
-export const Home = () => {
+export function Home() {
   return <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
     {/* Background Effects */}
     <StarBackground />
