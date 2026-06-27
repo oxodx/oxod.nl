@@ -34,9 +34,12 @@ export const AboutSection = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-6">
-          <div className="gradient-border p-6 card-hover">
-            <div className="flex items-start gap-4">
+        <div className="grid grid-cols-1 px-4">
+          <div className="gradient-border p-2 card-hover">
+            <div className={cn(
+              "flex items-start gap-4 py-4 px-2 rounded-2xl",
+              "bg-secondary text-secondary-foreground hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)] aria-expanded:bg-secondary aria-expanded:text-secondary-foreground"
+            )}>
               <div className="p-3 rounded-full bg-primary/10">
                 <Code className="h-6 w-6 text-primary" />
               </div>
@@ -48,8 +51,11 @@ export const AboutSection = () => {
               </div>
             </div>
           </div>
-          <div className="gradient-border p-6 card-hover">
-            <div className="flex items-start gap-4">
+          <div className="gradient-border p-2 card-hover">
+            <div className={cn(
+              "flex items-start gap-4 py-4 px-2 rounded-2xl",
+              "bg-secondary text-secondary-foreground hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)] aria-expanded:bg-secondary aria-expanded:text-secondary-foreground"
+            )}>
               <div className="p-3 rounded-full bg-primary/10">
                 <User className="h-6 w-6 text-primary" />
               </div>
@@ -61,8 +67,11 @@ export const AboutSection = () => {
               </div>
             </div>
           </div>
-          <div className="gradient-border p-6 card-hover">
-            <div className="flex items-start gap-4">
+          <div className="gradient-border p-2 card-hover">
+            <div className={cn(
+              "flex items-start gap-4 py-4 px-2 rounded-2xl",
+              "bg-secondary text-secondary-foreground hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)] aria-expanded:bg-secondary aria-expanded:text-secondary-foreground"
+            )}>
               <div className="p-3 rounded-full bg-primary/10">
                 <Briefcase className="h-6 w-6 text-primary" />
               </div>
