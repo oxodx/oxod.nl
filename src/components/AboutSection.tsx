@@ -1,7 +1,7 @@
 import { Briefcase, Code, User } from "lucide-react"
 import { buttonVariants } from "./shadcn/ui/button"
 import { cn } from "@/lib/utils"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./shadcn/ui/card"
+import { Card, CardContent, CardDescription, CardTitle } from "./shadcn/ui/card"
 
 export const AboutSection = () => {
   return <section id="about" className="py-24 px-4 relative">
