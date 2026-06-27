@@ -1,31 +1,43 @@
-import type { StackItem } from "@/types/stack"
+import type { StackItem } from "@/types/stack";
 
 export const STACK: StackItem[] = [
-  { key: "html", title: "HTML", categories: ["Frontend"] },
-  { key: "css", title: "CSS", categories: ["Frontend"] },
-  { key: "javascript", title: "JavaScript", categories: ["Frontend"] },
-  { key: "typescript", title: "TypeScript", categories: ["Frontend", "Backend"] },
-  { key: "react", title: "React", categories: ["Frontend"] },
-  { key: "tailwindcss", title: "Tailwind CSS", categories: ["Frontend"] },
-  { key: "nextjs", title: "Next.js", categories: ["Frontend"] },
-  { key: "vite", title: "Vite", categories: ["Frontend", "Tools"] },
-  { key: "python", title: "Python", categories: ["Backend"] },
-  { key: "nodejs", title: "Node.js", categories: ["Backend"] },
-  { key: "express", title: "Express", categories: ["Backend"] },
-  { key: "mongodb", title: "MongoDB", categories: ["Backend"] },
-  { key: "postgresql", title: "PostgreSQL", categories: ["Backend"] },
-  { key: "graphql", title: "GraphQL", categories: ["Backend"] },
-  { key: "git", title: "Git", categories: ["Tools"] },
-  { key: "github-actions", title: "GitHub Actions", categories: ["Tools"] },
-  { key: "docker", title: "Docker", categories: ["Tools"] },
-  { key: "vscode", title: "VS Code", categories: ["Tools"] },
-]
+  // Language
+  { key: "typescript", title: "TypeScript", category: "Language" },
+  { key: "javascript", title: "JavaScript", category: "Language" },
+  { key: "python", title: "Python", category: "Language" },
+
+  // Frontend
+  { key: "react", title: "React", category: "Frontend" },
+  { key: "nextjs", title: "Next.js", category: "Frontend" },
+  { key: "vite", title: "Vite", category: "Frontend" },
+  { key: "tailwindcss", title: "Tailwind CSS", category: "Frontend" },
+  { key: "shadcn", title: "shadcn/ui", category: "Frontend" },
+  { key: "html", title: "HTML", category: "Frontend" },
+  { key: "css", title: "CSS", category: "Frontend" },
+
+  // Backend & Database & Database
+  { key: "nodejs", title: "Node.js", category: "Backend & Database" },
+  { key: "nodejs", title: "Bun", category: "Backend & Database" },
+  { key: "postgresql", title: "PostgreSQL", category: "Backend & Database" },
+  { key: "mongodb", title: "MongoDB", category: "Backend & Database" },
+  { key: "redis", title: "Redis", category: "Backend & Database" },
+  { key: "nginx", title: "nginx", category: "Backend & Database" },
+
+  // Workflow & AI
+  { key: "cursor", title: "Cursor", category: "Workflow & AI" },
+  { key: "claude", title: "Claude", category: "Workflow & AI" },
+  { key: "gemini", title: "Gemini", category: "Workflow & AI" },
+  { key: "chatgpt", title: "ChatGPT", category: "Workflow & AI" },
+  { key: "git", title: "Git", category: "Workflow & AI" },
+  { key: "github", title: "GitHub", category: "Workflow & AI" },
+  { key: "docker", title: "Docker", category: "Workflow & AI" },
+  { key: "vercel", title: "Vercel", category: "Workflow & AI" },
+];
 
 export function groupByCategory(items: StackItem[]): Record<string, StackItem[]> {
   return items.reduce<Record<string, StackItem[]>>((acc, item) => {
-    for (const category of item.categories) {
-      (acc[category] ??= []).push(item)
-    }
-    return acc
-  }, {})
+    const category = item.category;
+    (acc[category] ??= []).push(item);
+    return acc;
+  }, {});
 }
