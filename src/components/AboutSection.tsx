@@ -1,4 +1,6 @@
 import { Briefcase, Code, User } from "lucide-react"
+import { buttonVariants } from "./shadcn/ui/button"
+import { cn } from "@/lib/utils"
 
 export const AboutSection = () => {
   return <section id="about" className="py-24 px-4 relative">
@@ -20,7 +22,13 @@ export const AboutSection = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
-            <a href="#contact" className="oxod-button">
+            <a
+              href="#contact"
+              className={cn(
+                buttonVariants({ variant: "default", size: "default" }),
+                "rounded-full px-6 py-2"
+              )}
+            >
               Get In Touch
             </a>
           </div>
