@@ -19,7 +19,7 @@ export const HomeSection = () => {
           <a
             href="#projects"
             className={cn(
-              buttonVariants({ variant: "default" }), 
+              buttonVariants({ variant: "default", size: "default" }), 
               "rounded-full px-6 py-2"
             )}
           >

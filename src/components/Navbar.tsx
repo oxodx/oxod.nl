@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils"
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react"
+import { buttonVariants } from "./shadcn/ui/button";
 
 const navItems = [
   { name: "Home", href: "#home" },
@@ -45,13 +46,16 @@ export const Navbar = () => {
       </div>
 
       {/* mobile nav */}
-      <button
+      <a
         onClick={() => setIsMenuOpen((prev) => !prev)}
-        className="md:hidden p-2 text-foreground z-50"
+        className={cn(
+          buttonVariants({ variant: "ghost", size: "icon-lg" }),
+          "md:hidden p-2 z-50"
+        )}
         aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
       >
         {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-      </button>
+      </a>
 
       <div className={cn(
         "fixed inset-0 bg-background/95 backdrop-blur-md z-40 flex flex-col items-center justify-center",
