@@ -1,4 +1,4 @@
-import type { Project } from "@/types/projects"
+import type { Project } from "@/types/projects";
 
 export const PROJECTS: Project[] = [
   {
@@ -10,4 +10,13 @@ export const PROJECTS: Project[] = [
     description: "My developer portfolio site.",
     isExpanded: true,
   },
-]
+  {
+    id: "dotfiles",
+    title: "dotfiles",
+    period: { start: "2026" },
+    link: "https:/github.com/oxodx/dotfiles",
+    skills: ["Nix", "NixOS", "Linux"],
+    description: "My NixOS dotfiles.",
+    isExpanded: true,
+  },
+];
