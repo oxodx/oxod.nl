@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react"
 import { Panel } from "@/components/Panel"
+import { Skeleton } from "@/components/shadcn/ui/skeleton"
 import { USER } from "@/data/user"
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
@@ -139,10 +140,104 @@ export function GitHubContributionsSection() {
   }
 
   if (loading) {
+    const skelEnd = new Date()
+    const skelStart = new Date(skelEnd)
+    skelStart.setFullYear(skelStart.getFullYear() - 1)
+    skelStart.setDate(skelStart.getDate() - (skelStart.getDay() || 7) + 1)
+
+    const skelCols = Math.ceil(
+      ((skelEnd.getTime() - skelStart.getTime()) / (1000 * 60 * 60 * 24) + 1) / 7
+    )
+    const skelCell = 10
+    const skelGap = 2
+    const skelPadLeft = 24
+    const skelPadTop = 14
+    const skelGridW = skelCols * (skelCell + skelGap)
+    const skelGridH = 7 * (skelCell + skelGap)
+    const skelSvgW = skelPadLeft + skelGridW
+    const skelSvgH = skelPadTop + skelGridH + 4
+
+    const skelWeeks = Array.from({ length: skelCols }, (_, i) =>
+      Array.from({ length: 7 }, (_, j) => `${i}-${j}`)
+    )
+
+    const skelMonthLabels: { label: string; col: number }[] = []
+    {
+      let last = -1
+      let col = 0
+      for (let d = new Date(skelStart); d <= skelEnd; d.setDate(d.getDate() + 7)) {
+        const m = d.getMonth()
+        if (m !== last) {
+          skelMonthLabels.push({ label: MONTHS[m], col })
+          last = m
+        }
+        col++
+      }
+    }
+
+    const skelDayLabels = DAYS.map((d, i) =>
+      d ? { label: d, row: i } : null
+    ).filter(Boolean) as { label: string; row: number }[]
+
     return (
       <Panel>
-        <div className="p-4 text-sm text-muted-foreground">
-          Loading GitHub contributions...
+        <h2 className="sr-only">GitHub Contributions</h2>
+        <div className="p-4">
+          <div className="relative">
+            <svg
+              viewBox={`0 0 ${skelSvgW} ${skelSvgH}`}
+              className="w-full"
+              aria-label="Loading GitHub Contributions"
+            >
+              {skelMonthLabels.map(({ label, col }) => (
+                <text
+                  key={label + col}
+                  x={skelPadLeft + col * (skelCell + skelGap)}
+                  y={10}
+                  className="fill-muted-foreground text-[9px] font-mono"
+                >
+                  {label}
+                </text>
+              ))}
+
+              {skelDayLabels.map(({ label, row }) => (
+                <text
+                  key={label}
+                  x={skelPadLeft - 4}
+                  y={skelPadTop + row * (skelCell + skelGap) + skelCell - 1}
+                  className="fill-muted-foreground text-[9px] font-mono"
+                  textAnchor="end"
+                >
+                  {label}
+                </text>
+              ))}
+
+              {skelWeeks.map((week, col) =>
+                week.map((id, row) => (
+                  <rect
+                    key={id}
+                    x={skelPadLeft + col * (skelCell + skelGap)}
+                    y={skelPadTop + row * (skelCell + skelGap)}
+                    width={skelCell}
+                    height={skelCell}
+                    rx={2}
+                    className="animate-pulse fill-muted-foreground/15"
+                  />
+                ))
+              )}
+            </svg>
+          </div>
+
+          <div className="mt-4 flex items-center justify-between">
+            <div className="h-4 w-56 animate-pulse rounded bg-muted" />
+            <div className="flex items-center gap-1">
+              <span className="h-3 w-6 animate-pulse rounded bg-muted" />
+              {Array.from({ length: 5 }, (_, i) => (
+                <span key={i} className="block size-3 animate-pulse rounded-sm bg-muted" />
+              ))}
+              <span className="h-3 w-6 animate-pulse rounded bg-muted" />
+            </div>
+          </div>
         </div>
       </Panel>
     )
