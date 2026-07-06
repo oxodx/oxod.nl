@@ -19,4 +19,13 @@ export const PROJECTS: Project[] = [
     description: "My NixOS dotfiles.",
     isExpanded: false,
   },
+  {
+    id: "oxmines",
+    title: "oxmines",
+    period: { start: "2026" },
+    link: "https://github.com/oxodx/oxmines",
+    skills: ["Java", "Minecraft"],
+    description: "A simple plugin for box-mining/prison servers.",
+    isExpanded: false,
+  },
 ];
