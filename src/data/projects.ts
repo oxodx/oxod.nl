@@ -23,7 +23,7 @@ export const PROJECTS: Project[] = [
     id: "oxmines",
     title: "oxmines",
     period: { start: "2026" },
-    link: "https://github.com/oxodx/oxmines",
+    link: "https://modrinth.com/plugin/oxmines",
     skills: ["Java", "Minecraft"],
     description: "A simple plugin for box-mining/prison servers.",
     isExpanded: false,
