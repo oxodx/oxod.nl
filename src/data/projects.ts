@@ -15,8 +15,8 @@ export const PROJECTS: Project[] = [
     title: "dotfiles",
     period: { start: "2026" },
     link: "https://github.com/oxodx/dotfiles",
-    skills: ["Nix", "NixOS", "Linux"],
-    description: "My NixOS dotfiles.",
+    skills: ["Arch Linux", "Linux"],
+    description: "My dotfiles.",
     isExpanded: false,
   },
   {
