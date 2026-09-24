@@ -27,6 +27,10 @@ export default tseslint.config(
     rules: {
       ...reactHooks.configs.flat.recommended.rules,
       ...reactRefresh.configs.vite.rules,
+      "react-refresh/only-export-components": [
+        "error",
+        { allowConstantExport: true },
+      ],
     },
   }
 )

@@ -7,9 +7,9 @@ export const USER: User = {
   username: "oxod",
   gender: "male",
   pronouns: "he/him",
-  bio: "Just a random guy who creates random stuff.",
+  bio: "Writing horrible code.",
   flipSentences: [
-    "Just a random guy who creates random stuff.",
+    "Writing horrible code.",
     "Student",
     "Open source contributor",
   ],

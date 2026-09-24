@@ -21,6 +21,12 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent-muted: color-mix(in oklab, var(--accent) 55%, transparent);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
   --color-line: var(--line);
   --color-border: var(--border);
   --color-input: var(--input);
@@ -66,6 +72,12 @@
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
+  --primary: oklch(0.685 0.17 145.71);
+  --primary-foreground: oklch(0.17 0.02 145.71);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.63 0.24 27.7);
+  --destructive-foreground: oklch(0.985 0 0);
   --radius: 0.625rem;
 }
 
@@ -85,6 +97,12 @@
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.556 0 0);
+  --primary: oklch(0.74 0.15 152);
+  --primary-foreground: oklch(0.16 0.015 152);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
 }
 
 @utility container {
