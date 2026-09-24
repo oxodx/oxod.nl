@@ -1,6 +1,6 @@
-import { Panel, PanelHeader, PanelTitle } from "@/components/Panel"
-import { Tag } from "@/components/ui/Tag"
-import { USER } from "@/data/user"
+import { Panel, PanelHeader, PanelTitle } from "@/components/Panel";
+import { Tag } from "@/components/ui/Tag";
+import { USER } from "@/data/user";
 
 export function ExperienceSection() {
   return (
@@ -70,5 +70,5 @@ export function ExperienceSection() {
         ))}
       </div>
     </Panel>
-  )
+  );
 }

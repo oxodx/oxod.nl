@@ -1,13 +1,13 @@
-import { Navbar } from "@/components/Navbar"
-import { ProfileHeader } from "@/components/ProfileHeader"
-import { OverviewSection } from "@/components/OverviewSection"
-import { SocialLinksSection } from "@/components/SocialLinksSection"
-import { GitHubContributionsSection } from "@/components/GitHubContributionsSection"
-import { HelloSection } from "@/components/HelloSection"
-import { StackSection } from "@/components/StackSection"
-import { ExperienceSection } from "@/components/ExperienceSection"
-import { ProjectsSection } from "@/components/ProjectsSection"
-import { Footer } from "@/components/Footer"
+import { Navbar } from "@/components/Navbar";
+import { ProfileHeader } from "@/components/ProfileHeader";
+import { OverviewSection } from "@/components/OverviewSection";
+import { SocialLinksSection } from "@/components/SocialLinksSection";
+import { GitHubContributionsSection } from "@/components/GitHubContributionsSection";
+import { HelloSection } from "@/components/HelloSection";
+import { StackSection } from "@/components/StackSection";
+import { ExperienceSection } from "@/components/ExperienceSection";
+import { ProjectsSection } from "@/components/ProjectsSection";
+import { Footer } from "@/components/Footer";
 
 export function Home() {
   return (
@@ -25,5 +25,5 @@ export function Home() {
       </main>
       <Footer />
     </div>
-  )
+  );
 }

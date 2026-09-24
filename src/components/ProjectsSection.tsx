@@ -1,9 +1,14 @@
-import { CollapsibleList } from "@/components/CollapsibleList"
-import { Panel, PanelHeader, PanelTitle, PanelTitleSup } from "@/components/Panel"
-import { ProjectItem } from "@/components/ProjectItem"
-import { PROJECTS } from "@/data/projects"
+import { CollapsibleList } from "@/components/CollapsibleList";
+import {
+  Panel,
+  PanelHeader,
+  PanelTitle,
+  PanelTitleSup,
+} from "@/components/Panel";
+import { ProjectItem } from "@/components/ProjectItem";
+import { PROJECTS } from "@/data/projects";
 
-const ID = "projects"
+const ID = "projects";
 
 export function ProjectsSection() {
   return (
@@ -23,5 +28,5 @@ export function ProjectsSection() {
         renderItem={(project) => <ProjectItem project={project} />}
       />
     </Panel>
-  )
+  );
 }

@@ -1,6 +1,6 @@
-import { type ReactNode, useState } from "react"
-import { ChevronDown } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { type ReactNode, useState } from "react";
+import { ChevronDown } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export function CollapsibleList<T>({
   items,
@@ -8,12 +8,12 @@ export function CollapsibleList<T>({
   keyExtractor,
   renderItem,
 }: {
-  items: T[]
-  max?: number
-  keyExtractor?: (item: T) => string
-  renderItem: (item: T) => ReactNode
+  items: T[];
+  max?: number;
+  keyExtractor?: (item: T) => string;
+  renderItem: (item: T) => ReactNode;
 }) {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   return (
     <div className="group/collapsible">
@@ -48,7 +48,7 @@ export function CollapsibleList<T>({
             className={cn(
               "inline-flex items-center gap-2 rounded-md border border-input bg-background pr-2.5 pl-3 py-1.5",
               "text-sm font-medium text-muted-foreground shadow-none",
-              "hover:bg-accent hover:text-foreground transition-colors"
+              "hover:bg-accent hover:text-foreground transition-colors",
             )}
           >
             <span className="hidden group-data-[open=false]/collapsible:block">
@@ -58,11 +58,14 @@ export function CollapsibleList<T>({
               Show less
             </span>
             <ChevronDown
-              className={cn("size-4 transition-transform", open && "rotate-180")}
+              className={cn(
+                "size-4 transition-transform",
+                open && "rotate-180",
+              )}
             />
           </button>
         </div>
       )}
     </div>
-  )
+  );
 }

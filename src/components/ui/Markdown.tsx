@@ -1,9 +1,12 @@
-import ReactMarkdown, { type Components } from "react-markdown"
-import remarkGfm from "remark-gfm"
+import ReactMarkdown, { type Components } from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 const components: Components = {
   p: ({ children, ...props }) => (
-    <p className="my-[0.5em] text-balance leading-relaxed first:mt-0 last:mb-0" {...props}>
+    <p
+      className="my-[0.5em] text-balance leading-relaxed first:mt-0 last:mb-0"
+      {...props}
+    >
       {children}
     </p>
   ),
@@ -23,9 +26,15 @@ const components: Components = {
       {children}
     </strong>
   ),
-  em: ({ children, ...props }) => <em className="italic" {...props}>{children}</em>,
+  em: ({ children, ...props }) => (
+    <em className="italic" {...props}>
+      {children}
+    </em>
+  ),
   del: ({ children, ...props }) => (
-    <del className="text-muted-foreground/60" {...props}>{children}</del>
+    <del className="text-muted-foreground/60" {...props}>
+      {children}
+    </del>
   ),
   code: ({ className, children, ...props }) => (
     <code
@@ -44,31 +53,50 @@ const components: Components = {
     </pre>
   ),
   h2: ({ children, ...props }) => (
-    <h2 className="mt-4 mb-2 font-heading text-xl font-medium tracking-tight text-balance first:mt-0" {...props}>
+    <h2
+      className="mt-4 mb-2 font-heading text-xl font-medium tracking-tight text-balance first:mt-0"
+      {...props}
+    >
       {children}
     </h2>
   ),
   h3: ({ children, ...props }) => (
-    <h3 className="mt-4 mb-2 font-heading text-lg font-medium tracking-tight text-balance first:mt-0" {...props}>
+    <h3
+      className="mt-4 mb-2 font-heading text-lg font-medium tracking-tight text-balance first:mt-0"
+      {...props}
+    >
       {children}
     </h3>
   ),
   h4: ({ children, ...props }) => (
-    <h4 className="mt-4 mb-2 font-heading text-base font-medium tracking-tight first:mt-0" {...props}>
+    <h4
+      className="mt-4 mb-2 font-heading text-base font-medium tracking-tight first:mt-0"
+      {...props}
+    >
       {children}
     </h4>
   ),
   ul: ({ children, ...props }) => (
-    <ul className="my-[0.5em] list-disc space-y-0.5 pl-5 marker:text-muted-foreground/50" {...props}>
+    <ul
+      className="my-[0.5em] list-disc space-y-0.5 pl-5 marker:text-muted-foreground/50"
+      {...props}
+    >
       {children}
     </ul>
   ),
   ol: ({ children, ...props }) => (
-    <ol className="my-[0.5em] list-decimal space-y-0.5 pl-5 marker:text-muted-foreground/50" {...props}>
+    <ol
+      className="my-[0.5em] list-decimal space-y-0.5 pl-5 marker:text-muted-foreground/50"
+      {...props}
+    >
       {children}
     </ol>
   ),
-  li: ({ children, ...props }) => <li className="leading-relaxed" {...props}>{children}</li>,
+  li: ({ children, ...props }) => (
+    <li className="leading-relaxed" {...props}>
+      {children}
+    </li>
+  ),
   blockquote: ({ children, ...props }) => (
     <blockquote
       className="my-[0.5em] border-l-2 border-line pl-3 text-muted-foreground/80 italic"
@@ -78,7 +106,7 @@ const components: Components = {
     </blockquote>
   ),
   hr: (props) => <hr className="my-[1em] border-line" {...props} />,
-}
+};
 
 export function Markdown({ children }: { children: string }) {
   return (
@@ -87,5 +115,5 @@ export function Markdown({ children }: { children: string }) {
         {children}
       </ReactMarkdown>
     </div>
-  )
+  );
 }

@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom"
-import { ArrowLeft } from "lucide-react"
+import { Link } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 
 export function NotFound() {
   return (
@@ -23,5 +23,5 @@ export function NotFound() {
         Back home
       </Link>
     </main>
-  )
+  );
 }

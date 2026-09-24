@@ -15,6 +15,9 @@ import {
   siNodedotjs,
   siPostgresql,
   siPython,
+  siRust,
+  siGo,
+  siLua,
   siReact,
   siRedis,
   siShadcnui,
@@ -22,15 +25,22 @@ import {
   siTypescript,
   siVercel,
   siVite,
-} from "simple-icons"
-import type { StackItem } from "@/types/stack"
+  siLinux,
+} from "simple-icons";
+import type { StackItem } from "@/types/stack";
 
-export type SkillGlyph = { path: string; hex: string }
+export type SkillGlyph = { path: string; hex: string };
 
 const ICONS: Partial<Record<StackItem["key"], SkillGlyph>> = {
+  // Languages
   typescript: { path: siTypescript.path, hex: `#${siTypescript.hex}` },
   javascript: { path: siJavascript.path, hex: `#${siJavascript.hex}` },
   python: { path: siPython.path, hex: `#${siPython.hex}` },
+  rust: { path: siRust.path, hex: `#${siRust.hex}` },
+  go: { path: siGo.path, hex: `#${siGo.hex}` },
+  lua: { path: siLua.path, hex: `#${siLua.hex}` },
+
+  // Frontend
   react: { path: siReact.path, hex: `#${siReact.hex}` },
   nextjs: { path: siNextdotjs.path, hex: `#${siNextdotjs.hex}` },
   vite: { path: siVite.path, hex: `#${siVite.hex}` },
@@ -38,21 +48,28 @@ const ICONS: Partial<Record<StackItem["key"], SkillGlyph>> = {
   shadcn: { path: siShadcnui.path, hex: `#${siShadcnui.hex}` },
   html: { path: siHtml5.path, hex: `#${siHtml5.hex}` },
   css: { path: siCss.path, hex: `#${siCss.hex}` },
+
+  // Backend & Data
   nodejs: { path: siNodedotjs.path, hex: `#${siNodedotjs.hex}` },
   bun: { path: siBun.path, hex: `#${siBun.hex}` },
   postgresql: { path: siPostgresql.path, hex: `#${siPostgresql.hex}` },
   mongodb: { path: siMongodb.path, hex: `#${siMongodb.hex}` },
   redis: { path: siRedis.path, hex: `#${siRedis.hex}` },
+
+  // DevOps & Cloud
   git: { path: siGit.path, hex: `#${siGit.hex}` },
   github: { path: siGithub.path, hex: `#${siGithub.hex}` },
   docker: { path: siDocker.path, hex: `#${siDocker.hex}` },
   nginx: { path: siNginx.path, hex: `#${siNginx.hex}` },
   vercel: { path: siVercel.path, hex: `#${siVercel.hex}` },
+
+  // Tools & AI
   cursor: { path: siCursor.path, hex: `#${siCursor.hex}` },
   claude: { path: siClaude.path, hex: `#${siClaude.hex}` },
   gemini: { path: siGooglegemini.path, hex: `#${siGooglegemini.hex}` },
-}
+  linux: { path: siLinux.path, hex: `#${siLinux.hex}` },
+};
 
 export function getSkillIcon(key: string): SkillGlyph | null {
-  return ICONS[key] ?? null
+  return ICONS[key] ?? null;
 }

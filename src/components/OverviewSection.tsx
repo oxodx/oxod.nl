@@ -7,55 +7,53 @@ import {
   Clock,
   Phone,
   Mail,
-} from "lucide-react"
-import { Panel, PanelContent } from "@/components/Panel"
-import { USER } from "@/data/user"
+} from "lucide-react";
+import { Panel, PanelContent } from "@/components/Panel";
+import { USER } from "@/data/user";
 
 function IconBox({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex size-6 shrink-0 items-center justify-center rounded-md border border-muted-foreground/15 bg-muted ring-1 ring-line ring-offset-1 ring-offset-background [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:text-muted-foreground">
       {children}
     </div>
-  )
+  );
 }
 
 function IntroItem({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex items-center gap-4 font-mono text-sm">
-      {children}
-    </div>
-  )
+    <div className="flex items-center gap-4 font-mono text-sm">{children}</div>
+  );
 }
 
 function formatTime(timeZone: string) {
-  const now = new Date()
+  const now = new Date();
   const time = now.toLocaleTimeString("en-US", {
     timeZone,
     hour: "2-digit",
     minute: "2-digit",
     hour12: true,
-  })
-  const viewerOffset = -now.getTimezoneOffset()
-  const targetStr = now.toLocaleString("en-US", { timeZone })
-  const utcStr = now.toLocaleString("en-US", { timeZone: "UTC" })
+  });
+  const viewerOffset = -now.getTimezoneOffset();
+  const targetStr = now.toLocaleString("en-US", { timeZone });
+  const utcStr = now.toLocaleString("en-US", { timeZone: "UTC" });
   const targetOffset =
-    (new Date(targetStr).getTime() - new Date(utcStr).getTime()) / 60000
-  const hoursDiff = Math.abs(targetOffset - viewerOffset) / 60
+    (new Date(targetStr).getTime() - new Date(utcStr).getTime()) / 60000;
+  const hoursDiff = Math.abs(targetOffset - viewerOffset) / 60;
   const diff =
     hoursDiff < 1
       ? " // same time"
-      : ` // ${Math.floor(hoursDiff)}h ${targetOffset > viewerOffset ? "ahead" : "behind"}`
-  return { time, diff }
+      : ` // ${Math.floor(hoursDiff)}h ${targetOffset > viewerOffset ? "ahead" : "behind"}`;
+  return { time, diff };
 }
 
 function jobIcon(title: string) {
-  if (/(developer|engineer)/i.test(title)) return <CodeXml />
-  if (/(founder|co-founder)/i.test(title)) return <Lightbulb />
-  return <BriefcaseBusiness />
+  if (/(developer|engineer)/i.test(title)) return <CodeXml />;
+  if (/(founder|co-founder)/i.test(title)) return <Lightbulb />;
+  return <BriefcaseBusiness />;
 }
 
 export function OverviewSection() {
-  const clock = formatTime(USER.timeZone)
+  const clock = formatTime(USER.timeZone);
 
   return (
     <Panel id="overview" className="scroll-mt-14">
@@ -67,7 +65,11 @@ export function OverviewSection() {
             <p className="text-balance">
               {job.title} <span aria-label="at">@</span>
               <a
-                href={job.experienceId ? `#experience-${job.experienceId}` : job.website}
+                href={
+                  job.experienceId
+                    ? `#experience-${job.experienceId}`
+                    : job.website
+                }
                 className="ml-0.5 font-medium underline underline-offset-2 decoration-from-font hover:text-foreground transition-colors text-muted-foreground"
               >
                 {job.company}
@@ -77,7 +79,9 @@ export function OverviewSection() {
         ))}
 
         <IntroItem>
-          <IconBox><MapPin /></IconBox>
+          <IconBox>
+            <MapPin />
+          </IconBox>
           <p className="text-balance">{USER.address}</p>
         </IntroItem>
 
@@ -95,13 +99,17 @@ export function OverviewSection() {
 
         {USER.phoneNumber && (
           <IntroItem>
-            <IconBox><Phone /></IconBox>
+            <IconBox>
+              <Phone />
+            </IconBox>
             <p className="text-balance">{USER.phoneNumber}</p>
           </IntroItem>
         )}
 
         <IntroItem>
-          <IconBox><Mail /></IconBox>
+          <IconBox>
+            <Mail />
+          </IconBox>
           <a
             href={`mailto:${USER.email}`}
             className="text-balance underline underline-offset-2 decoration-from-font hover:text-foreground transition-colors text-muted-foreground"
@@ -111,7 +119,9 @@ export function OverviewSection() {
         </IntroItem>
 
         <IntroItem>
-          <IconBox><Link /></IconBox>
+          <IconBox>
+            <Link />
+          </IconBox>
           <a
             href={USER.website}
             target="_blank"
@@ -124,7 +134,13 @@ export function OverviewSection() {
 
         <IntroItem>
           <IconBox>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="size-4">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              className="size-4"
+            >
               <circle cx="12" cy="12" r="10" />
               <circle cx="12" cy="12" r="2" />
             </svg>
@@ -137,5 +153,5 @@ export function OverviewSection() {
         aria-hidden
       />
     </Panel>
-  )
+  );
 }

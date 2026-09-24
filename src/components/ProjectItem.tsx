@@ -1,13 +1,13 @@
-import { useState } from "react"
-import { BoxIcon, ChevronsUpDown, LinkIcon } from "lucide-react"
-import { Tag } from "@/components/ui/Tag"
-import { cn } from "@/lib/utils"
-import type { Project } from "@/types/projects"
+import { useState } from "react";
+import { BoxIcon, ChevronsUpDown, LinkIcon } from "lucide-react";
+import { Tag } from "@/components/ui/Tag";
+import { cn } from "@/lib/utils";
+import type { Project } from "@/types/projects";
 
 export function ProjectItem({ project }: { project: Project }) {
-  const { start, end } = project.period
-  const isOngoing = !end
-  const [open, setOpen] = useState(project.isExpanded ?? false)
+  const { start, end } = project.period;
+  const isOngoing = !end;
+  const [open, setOpen] = useState(project.isExpanded ?? false);
 
   return (
     <div>
@@ -58,7 +58,7 @@ export function ProjectItem({ project }: { project: Project }) {
             <div
               className={cn(
                 "shrink-0 text-muted-foreground transition-transform duration-150",
-                open && "rotate-180"
+                open && "rotate-180",
               )}
             >
               <ChevronsUpDown className="size-4" />
@@ -87,5 +87,5 @@ export function ProjectItem({ project }: { project: Project }) {
         </div>
       )}
     </div>
-  )
+  );
 }

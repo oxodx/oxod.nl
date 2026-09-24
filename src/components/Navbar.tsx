@@ -1,11 +1,11 @@
-import { USER } from "@/data/user"
+import { USER } from "@/data/user";
 
 const navItems = [
   { name: "Overview", href: "#overview" },
   { name: "Stack", href: "#stack" },
   { name: "Experience", href: "#experience" },
   { name: "Projects", href: "#projects" },
-]
+];
 
 export function Navbar() {
   return (
@@ -31,5 +31,5 @@ export function Navbar() {
         </nav>
       </div>
     </header>
-  )
+  );
 }

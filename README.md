@@ -18,14 +18,14 @@ pnpm dev
 
 ## Scripts
 
-| Script          | Description                          |
-| --------------- | ------------------------------------ |
-| `pnpm dev`      | Start the dev server with HMR        |
-| `pnpm build`    | Build for production into `dist/`    |
-| `pnpm preview`  | Preview the production build         |
-| `pnpm lint`     | Run ESLint                           |
-| `pnpm lint:fix` | Run ESLint and auto-fix issues       |
-| `pnpm typecheck`| Run `tsc --noEmit`                   |
+| Script           | Description                       |
+| ---------------- | --------------------------------- |
+| `pnpm dev`       | Start the dev server with HMR     |
+| `pnpm build`     | Build for production into `dist/` |
+| `pnpm preview`   | Preview the production build      |
+| `pnpm lint`      | Run ESLint                        |
+| `pnpm lint:fix`  | Run ESLint and auto-fix issues    |
+| `pnpm typecheck` | Run `tsc --noEmit`                |
 
 ## Project structure
 
