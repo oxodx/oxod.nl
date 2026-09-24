@@ -56,9 +56,6 @@ function jobIcon(title: string) {
 
 export function OverviewSection() {
   const clock = formatTime(USER.timeZone)
-  const email = USER.emailB64
-    ? atob(USER.emailB64)
-    : USER.email
 
   return (
     <Panel>
@@ -104,10 +101,10 @@ export function OverviewSection() {
         <IntroItem>
           <IconBox><Mail /></IconBox>
           <a
-            href={`mailto:${email}`}
+            href={`mailto:${USER.email}`}
             className="text-balance underline underline-offset-2 decoration-from-font hover:text-foreground transition-colors text-muted-foreground"
           >
-            {email}
+            {USER.email}
           </a>
         </IntroItem>
 

@@ -1,7 +1,7 @@
 import type { User } from "@/types/user"
 
 export const USER: User = {
-  firstName: "",
+  firstName: "Yarno",
   lastName: "",
   displayName: "oxod",
   username: "oxod",
@@ -15,12 +15,8 @@ export const USER: User = {
   ],
   address: "Netherlands",
   phoneNumber: "",
-  phoneNumberB64: "",
   email: "me@oxod.nl",
-  emailB64: "bWVAb3hvZC5ubA==",
   website: "https://oxod.nl",
-  github: "https://github.com/oxodx",
-  twitter: "https://x.com/_oxod_",
   jobTitle: "Student",
   jobs: [
     {
@@ -29,17 +25,17 @@ export const USER: User = {
       website: "https://oxod.nl",
       startDate: "2022",
       type: "Full-time",
-      description: "Learning and building things. Studying computer science and software development.",
-      tags: ["Computer Science", "Software Development", "Mathematics"],
+      description: "Learning things.",
+      tags: ["Mathematics"],
       experienceId: "school",
     },
   ],
-  about: `I'm oxod — a developer who enjoys building random things and contributing to open source.
+  about: `- I'm oxod — a developer who enjoys building random things and contributing to open source.
 
 Passionate about exploring new technologies and turning ideas into reality through polished projects.
 
-Creator of [oxod.nl](https://github.com/oxodx/oxod.nl).`,
-  avatar: "",
+- Creator of [oxod.nl](https://github.com/oxodx/oxod.nl).`,
+  avatar: "https://avatars.githubusercontent.com/u/126201299?s=96&v=4",
   keywords: [
     "portfolio",
     "developer",
@@ -47,4 +43,6 @@ Creator of [oxod.nl](https://github.com/oxodx/oxod.nl).`,
   ],
   timeZone: "Europe/Amsterdam",
   dateCreated: "2026-06-26",
+  github: "https://github.com/oxodx",
+  twitter: "https://x.com/_oxod_",
 }
