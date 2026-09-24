@@ -10,21 +10,25 @@ function XIcon({ size = 16 }: { size?: number }) {
 }
 
 export function Footer() {
+  const year = new Date().getFullYear()
+
   return (
     <footer className="px-2">
       <div className="mx-auto md:max-w-3xl">
-        <div className="screen-line-top screen-line-bottom flex w-full">
-          <div className="mx-auto flex items-center justify-center gap-3 border-x border-line bg-background px-4 py-3">
+        <div className="screen-line-top screen-line-bottom flex w-full items-center justify-between gap-4 border-x border-line bg-background px-4 py-3">
+          <p className="text-xs text-muted-foreground">
+            © {year} {USER.displayName}
+          </p>
+          <div className="flex items-center gap-4">
             <a
-              className="flex items-center text-muted-foreground hover:text-foreground transition-colors"
+              className="flex items-center text-muted-foreground transition-colors hover:text-foreground"
               href={`mailto:${USER.email}`}
               aria-label="Email"
             >
               <Mail className="size-4" />
             </a>
-            <div className="h-5 w-px bg-line" />
             <a
-              className="flex items-center text-muted-foreground hover:text-foreground transition-colors"
+              className="flex items-center text-muted-foreground transition-colors hover:text-foreground"
               href={USER.github}
               target="_blank"
               rel="noopener"
@@ -32,9 +36,8 @@ export function Footer() {
             >
               <GitGraph className="size-4" />
             </a>
-            <div className="h-5 w-px bg-line" />
             <a
-              className="flex items-center text-muted-foreground hover:text-foreground transition-colors"
+              className="flex items-center text-muted-foreground transition-colors hover:text-foreground"
               href={USER.twitter}
               target="_blank"
               rel="noopener"

@@ -30,7 +30,7 @@ export function SocialLinksSection() {
                   href={link.href}
                   target={link.name === "mail" ? undefined : "_blank"}
                   rel={link.name === "mail" ? undefined : "noopener"}
-                  className="group relative inline-flex items-center justify-center rounded-md border border-input bg-background px-3 py-1.5 text-sm font-medium text-foreground/80 shadow-none hover:bg-accent hover:text-foreground transition-colors [&_svg:not([class*='size-'])]:size-4.5"
+                  className="group relative inline-flex items-center justify-center rounded-md border border-input bg-background px-3 py-1.5 text-sm font-medium text-foreground/80 shadow-none transition hover:-translate-y-0.5 hover:bg-accent hover:text-foreground [&_svg:not([class*='size-'])]:size-4.5"
                 >
                   <Icon />
                   <span className="sr-only">{link.title}</span>

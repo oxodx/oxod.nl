@@ -8,7 +8,7 @@ export function StackSection() {
   const grouped = groupByCategory(STACK)
 
   return (
-    <Panel id={ID}>
+    <Panel id={ID} className="scroll-mt-14">
       <PanelHeader>
         <div className="p-4">
           <PanelTitle>Stack</PanelTitle>

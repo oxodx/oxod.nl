@@ -15,7 +15,7 @@ export function HelloSection() {
   const greeting = getGreeting()
 
   return (
-    <Panel id={ID}>
+    <Panel id={ID} className="scroll-mt-14">
       <PanelHeader>
         <div className="p-4">
           <PanelTitle>{greeting}</PanelTitle>

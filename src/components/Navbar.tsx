@@ -2,6 +2,9 @@ import { USER } from "@/data/user"
 
 const navItems = [
   { name: "Overview", href: "#overview" },
+  { name: "Stack", href: "#stack" },
+  { name: "Experience", href: "#experience" },
+  { name: "Projects", href: "#projects" },
 ]
 
 export function Navbar() {
@@ -15,12 +18,12 @@ export function Navbar() {
           {USER.displayName}
         </a>
         <div className="flex-1" />
-        <nav className="flex items-center gap-4">
+        <nav className="hidden items-center gap-4 sm:flex">
           {navItems.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="text-sm font-medium tracking-wide text-muted-foreground hover:text-foreground transition-colors"
+              className="text-sm font-medium tracking-wide text-muted-foreground transition-colors hover:text-foreground"
             >
               {item.name}
             </a>

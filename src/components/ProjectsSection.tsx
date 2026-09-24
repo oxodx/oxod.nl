@@ -7,7 +7,7 @@ const ID = "projects"
 
 export function ProjectsSection() {
   return (
-    <Panel id={ID}>
+    <Panel id={ID} className="scroll-mt-14">
       <PanelHeader>
         <div className="p-4">
           <PanelTitle>

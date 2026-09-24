@@ -58,7 +58,7 @@ export function OverviewSection() {
   const clock = formatTime(USER.timeZone)
 
   return (
-    <Panel>
+    <Panel id="overview" className="scroll-mt-14">
       <h2 className="sr-only">Overview</h2>
       <PanelContent className="grid gap-x-4 gap-y-2.5 sm:grid-cols-2">
         {USER.jobs.map((job, i) => (
@@ -93,10 +93,12 @@ export function OverviewSection() {
           </p>
         </IntroItem>
 
-        <IntroItem>
-          <IconBox><Phone /></IconBox>
-          <p className="text-balance">{USER.phoneNumber || "—"}</p>
-        </IntroItem>
+        {USER.phoneNumber && (
+          <IntroItem>
+            <IconBox><Phone /></IconBox>
+            <p className="text-balance">{USER.phoneNumber}</p>
+          </IntroItem>
+        )}
 
         <IntroItem>
           <IconBox><Mail /></IconBox>

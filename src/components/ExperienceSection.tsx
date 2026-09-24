@@ -4,7 +4,7 @@ import { USER } from "@/data/user"
 
 export function ExperienceSection() {
   return (
-    <Panel id="experience">
+    <Panel id="experience" className="scroll-mt-14">
       <PanelHeader>
         <div className="p-4">
           <PanelTitle>Experience</PanelTitle>
