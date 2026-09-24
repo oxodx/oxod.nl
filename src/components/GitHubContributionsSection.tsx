@@ -14,6 +14,9 @@ const LEVELS = [
 
 type Day = { date: string; count: number; level: number }
 
+type Contribution = { date?: string; count?: number; level?: number }
+type ContributionsResponse = { contributions?: Contribution[] }
+
 function getMonthLabelX(
   index: number,
   total: number,
@@ -86,21 +89,20 @@ export function GitHubContributionsSection() {
     })
       .then((r) => {
         if (!r.ok) throw new Error("API error")
-        return r.json()
+        return r.json() as Promise<ContributionsResponse>
       })
       .then((json) => {
-        const contributions: Day[] = (json.contributions || []).map(
-          (c: { date?: string; count?: number; level?: number }) => ({
-            date: c.date ?? "",
-            count: c.count ?? 0,
-            level: c.level ?? 0,
-          })
-        )
+        const contributions: Day[] = (json.contributions ?? []).map((c) => ({
+          date: c.date ?? "",
+          count: c.count ?? 0,
+          level: c.level ?? 0,
+        }))
         setDays(contributions)
         setLoading(false)
       })
-      .catch((err) => {
-        if (err.name !== "AbortError") {
+      .catch((err: unknown) => {
+        const isAbort = err instanceof DOMException && err.name === "AbortError"
+        if (!isAbort) {
           console.error("Failed to load contributions:", err)
           setError(true)
           setLoading(false)
@@ -300,17 +302,7 @@ export function GitHubContributionsSection() {
                   width={cell}
                   height={cell}
                   rx={2}
-                  className={`cursor-pointer ${
-                    day.level === 0
-                      ? "fill-[oklch(0_0_0/8%)] dark:fill-[oklch(1_0_0/8%)]"
-                      : day.level === 1
-                        ? "fill-emerald-200 dark:fill-emerald-900"
-                        : day.level === 2
-                          ? "fill-emerald-400 dark:fill-emerald-700"
-                          : day.level === 3
-                            ? "fill-emerald-500 dark:fill-emerald-500"
-                            : "fill-emerald-600 dark:fill-emerald-400"
-                  }`}
+                  className={`cursor-pointer ${LEVELS[Math.min(day.level, LEVELS.length - 1)] ?? LEVELS[0]}`}
                   onMouseEnter={(e) => handleMouseEnter(e, day)}
                   onMouseLeave={handleMouseLeave}
                 />

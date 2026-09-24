@@ -64,7 +64,9 @@ export function PanelDescription({ className, children, ...props }: HTMLAttribut
         className
       )}
       {...props}
-    />
+    >
+      {children}
+    </div>
   )
 }
 

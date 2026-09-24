@@ -1,4 +1,4 @@
-import type { Project } from "@/types/projects";
+import type { Project } from "@/types/projects"
 
 export const PROJECTS: Project[] = [
   {
@@ -8,7 +8,6 @@ export const PROJECTS: Project[] = [
     link: "https://oxod.nl",
     skills: ["React", "Tailwind CSS v4", "Vite", "TypeScript"],
     description: "My developer portfolio site.",
-    isExpanded: false,
   },
   {
     id: "dotfiles",
@@ -17,7 +16,6 @@ export const PROJECTS: Project[] = [
     link: "https://github.com/oxodx/dotfiles",
     skills: ["Arch Linux", "Linux"],
     description: "My dotfiles.",
-    isExpanded: false,
   },
   {
     id: "oxmines",
@@ -26,6 +24,5 @@ export const PROJECTS: Project[] = [
     link: "https://modrinth.com/plugin/oxmines",
     skills: ["Java", "Minecraft"],
     description: "A simple plugin for box-mining/prison servers.",
-    isExpanded: false,
   },
-];
+]
