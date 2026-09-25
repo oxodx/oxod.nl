@@ -113,9 +113,15 @@ export function StackSection() {
     [rows],
   );
 
-  const [speeds, setSpeeds] = useState<number[]>(() =>
-    SPEED_FACTORS.map((f) => FAST_SPEED * f),
+  const [hasHover] = useState(
+    () =>
+      typeof window !== "undefined" &&
+      window.matchMedia("(hover: hover) and (pointer: fine)").matches,
   );
+  const [speeds, setSpeeds] = useState<number[]>(() => {
+    const baseSpeed = hasHover ? FAST_SPEED : SLOW_SPEED * 0.8;
+    return SPEED_FACTORS.map((factor) => baseSpeed * factor);
+  });
 
   useEffect(() => {
     let raf = 0;
@@ -148,20 +154,14 @@ export function StackSection() {
       if (!raf) raf = requestAnimationFrame(apply);
     };
     
-    // Check if device supports hover (mouse)
-    const hasHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    if (!hasHover) {
-      // On touch devices, keep a moderate constant speed
-      setSpeeds(SPEED_FACTORS.map((f) => SLOW_SPEED * f * 0.8));
-      return;
-    }
-    
+    if (!hasHover) return;
+
     window.addEventListener("mousemove", onMove, { passive: true });
     return () => {
       window.removeEventListener("mousemove", onMove);
       if (raf) cancelAnimationFrame(raf);
     };
-  }, []);
+  }, [hasHover]);
 
   return (
     <Panel id={ID} className="scroll-mt-14">
