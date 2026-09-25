@@ -303,11 +303,6 @@ button:active {
   @apply scale-95;
 }
 
-/* Improved link hover states */
-a:not(.no-underline):hover {
-  @apply text-primary transition-colors duration-200;
-}
-
 /* Better focus states */
 *:focus-visible {
   outline: 2px solid var(--ring);

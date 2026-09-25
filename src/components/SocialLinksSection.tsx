@@ -24,21 +24,18 @@ const links = [
     title: "Email",
     href: `mailto:${USER.email}`,
     icon: Mail,
-    className: "hover:border-ring/50 hover:bg-accent hover:text-foreground",
   },
   {
     name: "github",
     title: "GitHub",
     href: USER.github,
     icon: GithubIcon,
-    className: "hover:border-white/30 hover:bg-white hover:text-black",
   },
   {
     name: "x",
     title: "X",
     href: USER.twitter,
     icon: XIcon,
-    className: "hover:border-white/30 hover:bg-white hover:text-black",
   },
 ] as const;
 
@@ -56,7 +53,7 @@ export function SocialLinksSection() {
                   href={link.href}
                   target={link.name === "mail" ? undefined : "_blank"}
                   rel={link.name === "mail" ? undefined : "noopener"}
-                  className={`group relative inline-flex size-9 items-center justify-center rounded-lg border border-input bg-muted/40 text-muted-foreground transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_16px_-4px_rgba(255,255,255,0.1)] [&_svg:not([class*='size-'])]:size-4.5 ${link.className}`}
+                  className="group relative inline-flex size-9 items-center justify-center rounded-lg border border-input bg-muted/40 text-muted-foreground transition-all duration-300 hover:-translate-y-1 hover:border-ring/50 hover:bg-accent hover:text-foreground hover:shadow-[0_8px_16px_-4px_rgba(255,255,255,0.1)] [&_svg:not([class*='size-'])]:size-4.5"
                 >
                   <Icon />
                   <span className="sr-only">{link.title}</span>
