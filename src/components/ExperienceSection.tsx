@@ -18,7 +18,7 @@ export function ExperienceSection() {
             className="screen-line-bottom space-y-4 py-4 scroll-mt-14"
           >
             <div className="flex items-center gap-3">
-              <div className="flex size-6 shrink-0 items-center justify-center rounded-full border bg-card text-xs font-medium select-none">
+              <div className="flex size-6 shrink-0 items-center justify-center rounded-full border border-ring/20 bg-card text-xs font-medium select-none transition-all duration-200 hover:border-ring/50 hover:shadow-sm">
                 {job.company.charAt(0)}
               </div>
               <h3 className="text-lg leading-snug font-semibold">

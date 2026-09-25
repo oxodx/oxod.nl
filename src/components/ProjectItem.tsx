@@ -11,8 +11,8 @@ export function ProjectItem({ project }: { project: Project }) {
 
   return (
     <div>
-      <div className="group/project flex items-center hover:bg-accent-muted">
-        <div className="mx-2 sm:mx-4 flex size-6 shrink-0 items-center justify-center rounded-lg border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-line ring-offset-1 ring-offset-background select-none">
+      <div className="group/project flex items-center hover:bg-accent-muted transition-colors duration-200">
+        <div className="mx-2 sm:mx-4 flex size-6 shrink-0 items-center justify-center rounded-lg border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-line ring-offset-1 ring-offset-background select-none group-hover/project:border-ring/30 transition-all duration-200">
           {project.logo ? (
             <img
               src={project.logo}

@@ -48,7 +48,7 @@ export function CollapsibleList<T>({
             className={cn(
               "inline-flex items-center gap-2 rounded-md border border-input bg-background pr-2.5 pl-3 py-1.5",
               "text-sm font-medium text-muted-foreground shadow-none",
-              "hover:bg-accent hover:text-foreground transition-colors",
+              "hover:bg-accent hover:text-foreground transition-all duration-200 hover:border-ring/50",
             )}
           >
             <span className="hidden group-data-[open=false]/collapsible:block">
@@ -59,7 +59,7 @@ export function CollapsibleList<T>({
             </span>
             <ChevronDown
               className={cn(
-                "size-4 transition-transform",
+                "size-4 transition-transform duration-200",
                 open && "rotate-180",
               )}
             />
