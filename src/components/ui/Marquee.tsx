@@ -79,15 +79,15 @@ export function Marquee({
       ref={wrapRef}
       data-marquee
       className={cn(
-        "marquee-wrap overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_2.5rem,black_calc(100%-2.5rem),transparent)]",
+        "marquee-wrap overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_1.5rem,black_calc(100%-1.5rem),transparent)] sm:[mask-image:linear-gradient(to_right,transparent,black_2.5rem,black_calc(100%-2.5rem),transparent)]",
         className,
       )}
     >
       <div ref={trackRef} className="flex w-max will-change-transform">
-        <div ref={sliceRef} className="flex gap-3 pr-3">
+        <div ref={sliceRef} className="flex gap-1.5 sm:gap-2 md:gap-3 pr-1.5 sm:pr-2 md:pr-3">
           {children}
         </div>
-        <div className="flex gap-3 pr-3" aria-hidden>
+        <div className="flex gap-1.5 sm:gap-2 md:gap-3 pr-1.5 sm:pr-2 md:pr-3" aria-hidden>
           {children}
         </div>
       </div>

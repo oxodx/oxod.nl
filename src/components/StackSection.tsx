@@ -38,15 +38,17 @@ function SkillCell({ item }: { item: StackItem }) {
   const icon = glyph ? (
     <svg
       viewBox="0 0 24 24"
-      className="size-4 shrink-0"
+      className="size-3 sm:size-4 shrink-0"
       aria-hidden
       fill={glyph.hex}
     >
       <path d={glyph.path} />
     </svg>
   ) : (
-    <Fallback className="size-4 shrink-0" aria-hidden />
+    <Fallback className="size-3 sm:size-4 shrink-0" aria-hidden />
   );
+  
+  const levelText = item.level ? LEVEL_LABELS[item.level] : null;
 
   return (
     <Tooltip>
@@ -55,19 +57,24 @@ function SkillCell({ item }: { item: StackItem }) {
           href={item.href}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label={`${item.title} — ${item.category}`}
-          className="inline-flex h-9 shrink-0 cursor-pointer items-center gap-2 rounded-full border border-input bg-card px-3.5 font-mono text-sm text-foreground/90 transition-colors hover:border-ring/50 hover:bg-accent hover:text-foreground"
+          aria-label={`${item.title} — ${item.category}${levelText ? ` · ${levelText}` : ""}`}
+          className="inline-flex h-auto shrink-0 cursor-pointer items-center gap-2 sm:gap-2.5 rounded-full border border-input bg-card px-3 sm:px-4 py-1.5 sm:py-2 font-mono text-xs sm:text-sm text-foreground/90 transition-colors hover:border-ring/50 hover:bg-accent hover:text-foreground group/skill"
         >
           {icon}
-          {item.title}
+          <span className="flex flex-col leading-none">
+            <span>{item.title}</span>
+            <span className="text-[0.65em] text-muted-foreground group-hover/skill:text-foreground/60 transition-colors">
+              {levelText || item.category}
+            </span>
+          </span>
         </a>
       </TooltipTrigger>
-      <TooltipContent>
+      <TooltipContent className="hidden sm:block">
         <div className="flex flex-col gap-1.5">
           <span className="font-medium">{item.title}</span>
           {item.level ? (
             <span className="text-xs text-muted-foreground">
-              {item.category} · {LEVEL_LABELS[item.level]}
+              {item.category} · {levelText}
             </span>
           ) : (
             <span className="text-xs text-muted-foreground">
@@ -140,6 +147,15 @@ export function StackSection() {
       latestY = e.clientY;
       if (!raf) raf = requestAnimationFrame(apply);
     };
+    
+    // Check if device supports hover (mouse)
+    const hasHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    if (!hasHover) {
+      // On touch devices, keep a moderate constant speed
+      setSpeeds(SPEED_FACTORS.map((f) => SLOW_SPEED * f * 0.8));
+      return;
+    }
+    
     window.addEventListener("mousemove", onMove, { passive: true });
     return () => {
       window.removeEventListener("mousemove", onMove);
@@ -150,11 +166,11 @@ export function StackSection() {
   return (
     <Panel id={ID} className="scroll-mt-14">
       <PanelHeader>
-        <div className="p-4">
+        <div className="p-2 sm:p-3 lg:p-4">
           <PanelTitle>Stack</PanelTitle>
         </div>
       </PanelHeader>
-      <div ref={wrapRef} className="space-y-3 p-4">
+      <div ref={wrapRef} className="space-y-2.5 p-3 sm:space-y-3.5 sm:p-4 md:space-y-4">
         <TooltipProvider delayDuration={100}>
           <Marquee speed={speeds[0]}>
             {sequences[0].map((item, i) => (

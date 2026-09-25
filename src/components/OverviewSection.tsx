@@ -21,7 +21,7 @@ function IconBox({ children }: { children: React.ReactNode }) {
 
 function IntroItem({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex items-center gap-4 font-mono text-sm">{children}</div>
+    <div className="flex items-center gap-2 sm:gap-4 font-mono text-xs sm:text-sm">{children}</div>
   );
 }
 
@@ -58,7 +58,7 @@ export function OverviewSection() {
   return (
     <Panel id="overview" className="scroll-mt-14">
       <h2 className="sr-only">Overview</h2>
-      <PanelContent className="grid gap-x-4 gap-y-2.5 sm:grid-cols-2">
+      <PanelContent className="grid gap-x-3 gap-y-2 sm:gap-x-4 sm:gap-y-2.5 grid-cols-1 sm:grid-cols-2">
         {USER.jobs.map((job, i) => (
           <IntroItem key={i}>
             <IconBox>{jobIcon(job.title)}</IconBox>

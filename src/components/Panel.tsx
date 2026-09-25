@@ -55,7 +55,7 @@ export function PanelTitle({
     <Tag
       data-slot="panel-title"
       className={cn(
-        "font-heading text-3xl font-medium tracking-tight text-balance",
+        "font-heading text-2xl sm:text-3xl font-medium tracking-tight text-balance",
         className,
       )}
       {...props}
@@ -108,7 +108,7 @@ export function PanelContent({
   ...props
 }: HTMLAttributes<HTMLDivElement>) {
   return (
-    <div data-slot="panel-body" className={cn("p-4", className)} {...props}>
+    <div data-slot="panel-body" className={cn("p-2 sm:p-3 lg:p-4", className)} {...props}>
       {children}
     </div>
   );

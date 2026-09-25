@@ -12,7 +12,7 @@ export function ProjectItem({ project }: { project: Project }) {
   return (
     <div>
       <div className="group/project flex items-center hover:bg-accent-muted">
-        <div className="mx-4 flex size-6 shrink-0 items-center justify-center rounded-lg border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-line ring-offset-1 ring-offset-background select-none">
+        <div className="mx-2 sm:mx-4 flex size-6 shrink-0 items-center justify-center rounded-lg border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-line ring-offset-1 ring-offset-background select-none">
           {project.logo ? (
             <img
               src={project.logo}
@@ -28,13 +28,13 @@ export function ProjectItem({ project }: { project: Project }) {
         <div className="flex-1 border-l border-dashed border-line">
           <button
             onClick={() => setOpen((v) => !v)}
-            className="flex w-full items-center gap-2 p-4 pr-2 text-left"
+            className="flex w-full items-center gap-2 p-2 sm:p-4 pr-2 text-left"
           >
             <div className="flex-1">
-              <h3 className="mb-1 leading-snug font-medium text-balance">
+              <h3 className="mb-1 leading-snug font-medium text-balance text-sm sm:text-base">
                 {project.title}
               </h3>
-              <dl className="text-sm text-muted-foreground">
+              <dl className="text-xs sm:text-sm text-muted-foreground">
                 <dt className="sr-only">Period</dt>
                 <dd className="flex items-center gap-0.5">
                   <span>{start}</span>
@@ -68,9 +68,9 @@ export function ProjectItem({ project }: { project: Project }) {
       </div>
 
       {open && (
-        <div className="space-y-4 border-t border-line p-4">
+        <div className="space-y-3 border-t border-line p-2 sm:space-y-4 sm:p-4">
           {project.description && (
-            <p className="text-sm text-muted-foreground text-balance leading-relaxed">
+            <p className="text-xs sm:text-sm text-muted-foreground text-balance leading-relaxed">
               {project.description}
             </p>
           )}

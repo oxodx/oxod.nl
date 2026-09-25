@@ -17,20 +17,20 @@ export function ProfileHeader() {
 
   return (
     <div className="screen-line-bottom border-x border-line">
-      <div className="flex items-end gap-3 p-3 sm:gap-4 sm:p-4">
+      <div className="flex items-end gap-2 p-2 sm:gap-3 sm:p-3 lg:gap-4 lg:p-4">
         <img
           src={USER.avatar}
           alt={USER.displayName}
           width={144}
           height={144}
-          className="size-28 shrink-0 rounded-full bg-muted object-cover ring-1 ring-line sm:size-36"
+          className="size-24 sm:size-28 lg:size-36 shrink-0 rounded-full bg-muted object-cover ring-1 ring-line"
         />
-        <div className="min-w-0">
-          <h1 className="text-[2rem]/none font-medium tracking-tight">
+        <div className="min-w-0 flex-1">
+          <h1 className="text-xl sm:text-2xl lg:text-[2rem] font-medium tracking-tight leading-tight">
             {USER.displayName}
           </h1>
           <p
-            className="mt-3 min-h-12 text-base text-muted-foreground text-balance leading-relaxed sm:min-h-6"
+            className="mt-2 min-h-6 text-xs sm:text-sm lg:text-base text-muted-foreground text-balance leading-relaxed"
             aria-live="polite"
           >
             <span

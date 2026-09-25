@@ -22,7 +22,7 @@ export function HelloSection() {
   return (
     <Panel id={ID} className="scroll-mt-14">
       <PanelHeader>
-        <div className="p-4">
+        <div className="p-2 sm:p-3 lg:p-4">
           <PanelTitle>{greeting}</PanelTitle>
         </div>
       </PanelHeader>
