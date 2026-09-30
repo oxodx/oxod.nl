@@ -13,7 +13,11 @@ type Job = User["jobs"][number];
 export function ExperienceItem({ job }: { job: Job }) {
   const [open, setOpen] = useState(false);
   const detailsId = useId();
-  const hasPeriod = Boolean(job.startDate || job.endDate);
+
+  // "2022 — Present" when still ongoing, "2022 — 2024" when it has ended.
+  const start = job.startDate?.trim();
+  const end = job.endDate?.trim() || (start ? "Present" : "");
+  const period = [start, end].filter(Boolean).join(" — ");
 
   return (
     <div
@@ -46,16 +50,10 @@ export function ExperienceItem({ job }: { job: Job }) {
                       <span>{job.type}</span>
                     </>
                   )}
-                  {hasPeriod && (
+                  {period && (
                     <>
                       <span aria-hidden="true">·</span>
-                      <span className="tabular-nums">
-                        {job.startDate}
-                        {job.startDate && job.endDate && (
-                          <span className="px-0.5 font-mono">—</span>
-                        )}
-                        {job.endDate || (job.startDate ? "Present" : null)}
-                      </span>
+                      <span className="tabular-nums">{period}</span>
                     </>
                   )}
                 </p>
