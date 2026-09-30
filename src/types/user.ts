@@ -1,5 +1,7 @@
 export type User = {
+  /** Real first name, shown under the display name */
   firstName: string;
+  /** Real last name; leave blank to show the first name only */
   lastName: string;
   /** Preferred public-facing name */
   displayName: string;
@@ -43,4 +45,6 @@ export type User = {
   dateCreated: string;
   github: string;
   twitter: string;
+  /** LinkedIn profile URL; leave blank to hide the LinkedIn link */
+  linkedin: string;
 };

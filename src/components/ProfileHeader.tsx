@@ -4,6 +4,11 @@ import { USER } from "@/data/user";
 const sentences =
   USER.flipSentences.length > 0 ? USER.flipSentences : [USER.bio];
 
+const realName = [USER.firstName, USER.lastName]
+  .map((part) => part.trim())
+  .filter(Boolean)
+  .join(" ");
+
 export function ProfileHeader() {
   const [index, setIndex] = useState(0);
 
@@ -29,6 +34,11 @@ export function ProfileHeader() {
           <h1 className="text-xl sm:text-2xl lg:text-[2rem] font-medium tracking-tight leading-tight">
             {USER.displayName}
           </h1>
+          {realName && (
+            <p className="mt-0.5 text-sm text-muted-foreground leading-snug">
+              {realName}
+            </p>
+          )}
           <p
             className="mt-2 min-h-6 text-xs sm:text-sm lg:text-base text-muted-foreground text-balance leading-relaxed"
             aria-live="polite"

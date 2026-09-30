@@ -2,7 +2,7 @@ import type { User } from "@/types/user"
 
 export const USER: User = {
   firstName: "Yarno",
-  lastName: "",
+  lastName: "Roethof",
   displayName: "oxod",
   username: "oxod",
   gender: "male",
@@ -10,7 +10,7 @@ export const USER: User = {
   bio: "Writing horrible code.",
   flipSentences: [
     "Writing horrible code.",
-    "Student",
+    "Student.",
     "Open source contributor",
   ],
   address: "Netherlands",
@@ -21,13 +21,13 @@ export const USER: User = {
   jobs: [
     {
       title: "Student",
-      company: "School",
-      website: "https://oxod.nl",
+      company: "Porteum, Lelystad",
+      website: "https://www.porteum.nl/",
       startDate: "2022",
       type: "Full-time",
       description: "Learning things.",
-      tags: ["Mathematics"],
-      experienceId: "school",
+      tags: ["Mathematics", "English", "Dutch"],
+      experienceId: "porteum",
     },
   ],
   about: `- I'm oxod — a developer who enjoys building random things and contributing to open source.
@@ -45,4 +45,5 @@ Passionate about exploring new technologies and turning ideas into reality throu
   dateCreated: "2026-06-26",
   github: "https://github.com/oxodx",
   twitter: "https://x.com/_oxod_",
+  linkedin: "https://www.linkedin.com/in/yarno-roethof",
 }
