@@ -1,4 +1,4 @@
-import type { Project } from "@/types/projects"
+import type { Project } from "@/types/projects";
 
 export const PROJECTS: Project[] = [
   {
@@ -18,6 +18,14 @@ export const PROJECTS: Project[] = [
     description: "A Minecraft Fabric Utility Mod for anarchy servers.",
   },
   {
+    id: "mochii",
+    title: "mochii",
+    period: { start: "2026" },
+    link: "https://github.com/oxodx/mochii",
+    skills: ["C++", "OpenGL"],
+    description: "A simple game engine written in cpp.",
+  },
+  {
     id: "oxmines",
     title: "oxmines",
     period: { start: "2026" },
@@ -31,7 +39,8 @@ export const PROJECTS: Project[] = [
     period: { start: "2026" },
     link: "https://modrinth.com/mod/oxai",
     skills: ["Java", "Minecraft"],
-    description: "Minecraft mod that adds AI chat via Ollama. Type `@ai` in chat to ask questions.",
+    description:
+      "Minecraft mod that adds AI chat via Ollama. Type `@ai` in chat to ask questions.",
   },
   {
     id: "x",
@@ -41,4 +50,4 @@ export const PROJECTS: Project[] = [
     skills: ["Go"],
     description: "oxod's experimental packages.",
   },
-]
+];
