@@ -108,7 +108,11 @@ export function PanelContent({
   ...props
 }: HTMLAttributes<HTMLDivElement>) {
   return (
-    <div data-slot="panel-body" className={cn("p-2 sm:p-3 lg:p-4", className)} {...props}>
+    <div
+      data-slot="panel-body"
+      className={cn("p-2 sm:p-3 lg:p-4", className)}
+      {...props}
+    >
       {children}
     </div>
   );

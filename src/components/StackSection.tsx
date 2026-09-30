@@ -47,7 +47,7 @@ function SkillCell({ item }: { item: StackItem }) {
   ) : (
     <Fallback className="size-3 sm:size-4 shrink-0" aria-hidden />
   );
-  
+
   const levelText = item.level ? LEVEL_LABELS[item.level] : null;
 
   return (
@@ -153,7 +153,7 @@ export function StackSection() {
       latestY = e.clientY;
       if (!raf) raf = requestAnimationFrame(apply);
     };
-    
+
     if (!hasHover) return;
 
     window.addEventListener("mousemove", onMove, { passive: true });
@@ -170,7 +170,10 @@ export function StackSection() {
           <PanelTitle>Stack</PanelTitle>
         </div>
       </PanelHeader>
-      <div ref={wrapRef} className="space-y-2.5 p-3 sm:space-y-3.5 sm:p-4 md:space-y-4">
+      <div
+        ref={wrapRef}
+        className="space-y-2.5 p-3 sm:space-y-3.5 sm:p-4 md:space-y-4"
+      >
         <TooltipProvider delayDuration={100}>
           <Marquee speed={speeds[0]}>
             {sequences[0].map((item, i) => (

@@ -21,7 +21,9 @@ function IconBox({ children }: { children: React.ReactNode }) {
 
 function IntroItem({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex items-center gap-2 sm:gap-4 font-mono text-xs sm:text-sm">{children}</div>
+    <div className="flex items-center gap-2 sm:gap-4 font-mono text-xs sm:text-sm">
+      {children}
+    </div>
   );
 }
 
