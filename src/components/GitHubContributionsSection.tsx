@@ -23,13 +23,18 @@ const MONTHS = [
   "Dec",
 ];
 const DAYS = ["", "Mon", "", "Wed", "", "Fri", ""];
+// Both variants are written out literally: Tailwind only generates the class
+// names it finds in source, so deriving one from the other at runtime
+// (e.g. "fill-emerald-950".replace("fill-", "bg-")) would produce no CSS.
+// The opacity modifier syntax is required — an arbitrary value containing "/"
+// (e.g. "fill-[oklch(1_0_0/6%)]") is parsed as a modifier and never emitted.
 const LEVELS = [
-  "fill-[oklch(1_0_0/6%)]",
-  "fill-emerald-950",
-  "fill-emerald-800",
-  "fill-emerald-600",
-  "fill-emerald-400",
-];
+  { fill: "fill-foreground/6", bg: "bg-foreground/6" },
+  { fill: "fill-emerald-950", bg: "bg-emerald-950" },
+  { fill: "fill-emerald-800", bg: "bg-emerald-800" },
+  { fill: "fill-emerald-600", bg: "bg-emerald-600" },
+  { fill: "fill-emerald-400", bg: "bg-emerald-400" },
+] as const;
 
 type Day = { date: string; count: number; level: number };
 
@@ -259,7 +264,7 @@ export function GitHubContributionsSection() {
                     width={cell}
                     height={cell}
                     rx={2}
-                    className={`cursor-pointer transition-[filter] duration-150 hover:brightness-125 ${LEVELS[Math.min(day.level, LEVELS.length - 1)] ?? LEVELS[0]}`}
+                    className={`cursor-pointer transition-[filter] duration-150 hover:brightness-125 ${LEVELS[Math.min(day.level, LEVELS.length - 1)]?.fill ?? LEVELS[0].fill}`}
                     onMouseEnter={(e) => handleMouseEnter(e, day)}
                     onMouseLeave={handleMouseLeave}
                   />
@@ -296,10 +301,10 @@ export function GitHubContributionsSection() {
               <span className="mr-1 text-[10px] text-muted-foreground">
                 Less
               </span>
-              {LEVELS.map((c, i) => (
+              {LEVELS.map((level, i) => (
                 <span
                   key={i}
-                  className={`block size-3 rounded-[3px] ${c.replace("fill-", "bg-")}`}
+                  className={`block size-3 rounded-[3px] ${level.bg}`}
                 />
               ))}
               <span className="ml-1 text-[10px] text-muted-foreground">
