@@ -8,6 +8,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    container:
+      image: node:22-bookworm
     steps:
       - uses: https://code.forgejo.org/actions/checkout@v4
         with:
@@ -28,5 +30,5 @@ jobs:
         with:
           site: https://pages.oxod.nl/
           server: pages.oxod.nl
-          token: ${{ forge.token }}
+          token: ${{ secrets.FORGEJO_TOKEN }}
           source: dist/
